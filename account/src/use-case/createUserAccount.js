@@ -12,4 +12,7 @@ const createUserUseCase = (nome, email, senha) => {
     return allUsers;
 }
 
-export default createUserUseCase;
+createUserUseCase('teste', 'teste@dominio.com', '123456');
+createUserUseCase('teste2', 'teste2@dominio.com', '123456');
+
+export { allUsers, createUserUseCase };
