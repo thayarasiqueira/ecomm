@@ -1,5 +1,5 @@
 FROM node:16-alpine
-WORKDIR /app-node-product
+WORKDIR /app-node-account
 COPY . .
 RUN npm install
 ENTRYPOINT npm start
