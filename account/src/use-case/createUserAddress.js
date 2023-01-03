@@ -14,7 +14,6 @@ const createUserAddressUseCase = (email, logradouro, numero, complemento = '', b
               cidade,
               uf,
             };
-        console.log(allUsers[index]);
         return true;
     }
     return false;

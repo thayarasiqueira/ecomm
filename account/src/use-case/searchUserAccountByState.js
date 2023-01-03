@@ -6,7 +6,7 @@ const searchUserAccountByStateUseCase = (state) => {
         return result;
     }
 
-    return 'Sem usuários deste local';
+    return `Sem usuários de ${state}`;
 }
 
 console.log(searchUserAccountByStateUseCase('SP'));
