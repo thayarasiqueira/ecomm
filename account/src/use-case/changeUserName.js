@@ -1,4 +1,4 @@
-import { allUsers } from "./createUserAccount.js";
+import allUsers from "../main.js";
 import searchUserAccountByEmailUseCase from "./searchUserAccountByEmail.js";
 
 const changeUserNameUseCase = (email, newName) => {

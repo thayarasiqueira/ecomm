@@ -1,4 +1,4 @@
-import { allUsers } from "./createUserAccount.js";
+import allUsers from '../main.js';
 import searchUserAccountByEmailUseCase from "./searchUserAccountByEmail.js";
 
 const createUserAddressUseCase = (email, logradouro, numero, complemento = '', bairro, cep, cidade, uf) => {
@@ -19,5 +19,7 @@ const createUserAddressUseCase = (email, logradouro, numero, complemento = '', b
     }
     return false;
 }
+
+console.log(createUserAddressUseCase('teste@dominio.com', 'Rua Assis Figueiredo', 1350, 'Apto 12', 'Centro', '000000', 'São Paulo', 'SP'));
 
 export default createUserAddressUseCase;
