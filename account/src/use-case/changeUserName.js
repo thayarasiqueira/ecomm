@@ -11,6 +11,4 @@ const changeUserNameUseCase = (email, newName) => {
     return false;
 }
 
-console.log(changeUserNameUseCase('teste@dominio.com', 'novoteste'));
-
 export default changeUserNameUseCase;
