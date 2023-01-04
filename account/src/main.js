@@ -52,6 +52,4 @@ let allUsers = [
       },
 ]
 
-console.log(allUsers);
-
 export default allUsers;

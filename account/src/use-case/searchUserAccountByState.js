@@ -9,6 +9,4 @@ const searchUserAccountByStateUseCase = (state) => {
     return `Sem usuários de ${state}`;
 }
 
-console.log(searchUserAccountByStateUseCase('SP'));
-
 export default searchUserAccountByStateUseCase;
