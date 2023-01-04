@@ -1,4 +1,4 @@
-import allUsers from '../main.js';
+import allUsers from "../mock/users.js"
 
 const createUserUseCase = (nome, email, senha) => {
     allUsers.push({

@@ -1,4 +1,4 @@
-import allUsers from '../main.js';
+import allUsers from "../mock/users.js"
 
 const searchUserAccountByEmailUseCase = (emailUser) => {
     const result = allUsers.filter((user) => user.email === emailUser)

@@ -1,4 +1,4 @@
-import allUsers from '../main.js';
+import allUsers from "../mock/users.js"
 
 const searchUserAccountByStateUseCase = (state) => {
     const result = allUsers.filter((user) => user.endereco.uf === state);

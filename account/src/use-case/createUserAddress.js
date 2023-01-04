@@ -1,4 +1,4 @@
-import allUsers from '../main.js';
+import allUsers from "../mock/users.js"
 import searchUserAccountByEmailUseCase from "./searchUserAccountByEmail.js";
 
 const createUserAddressUseCase = (email, logradouro, numero, complemento = '', bairro, cep, cidade, uf) => {
