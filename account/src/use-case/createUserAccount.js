@@ -6,7 +6,7 @@ const createUserUseCase = (nome, email, senha) => {
         nome,
         email,
         senha,
-        createdDate: new Date().toISOString(),
+        createdDate: new Date().toLocaleDateString('sv'),
     })
 
     return allUsers;
