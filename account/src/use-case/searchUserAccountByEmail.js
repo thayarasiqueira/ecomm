@@ -1,11 +1,11 @@
 import allUsers from "../mock/users.js"
 
 const searchUserAccountByEmailUseCase = (emailUser) => {
-    const result = allUsers.filter((user) => user.email === emailUser)
-    if (result.length > 0) {
-        return result;
+    const result = allUsers.find((user) => user.email === emailUser)
+    if (!result) {
+        return "Usuário não encontrado";
     }
-    return "Usuário não encontrado";
+    return result;
 }
 
 export default searchUserAccountByEmailUseCase;

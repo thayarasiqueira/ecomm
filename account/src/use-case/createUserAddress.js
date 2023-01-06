@@ -3,20 +3,20 @@ import searchUserAccountByEmailUseCase from "./searchUserAccountByEmail.js";
 
 const createUserAddressUseCase = (email, logradouro, numero, complemento = '', bairro, cep, cidade, uf) => {
     const userFound = searchUserAccountByEmailUseCase(email);
-    if (userFound.length > 0) {
-        const index = (userFound[0].id -1);
-        allUsers[index].endereco = {
-              logradouro,
-              numero,
-              complemento,
-              bairro,
-              cep,
-              cidade,
-              uf,
-            };
-        return true;
+    if (!userFound) {
+        return false;
     }
-    return false;
+    const index = (userFound.id -1);
+    allUsers[index].endereco = {
+          logradouro,
+          numero,
+          complemento,
+          bairro,
+          cep,
+          cidade,
+          uf,
+        };
+    return true;
 }
 
 console.log(createUserAddressUseCase('teste@dominio.com', 'Rua Assis Figueiredo', 1350, 'Apto 12', 'Centro', '000000', 'São Paulo', 'SP'));
