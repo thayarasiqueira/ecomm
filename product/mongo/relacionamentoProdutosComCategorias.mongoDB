@@ -4,6 +4,7 @@ db.products.find({}).forEach(function(product) {
   let categoryInfo = db.categories.findOne({ "nome": product.categoria });
 
   product.categoria_id = categoryInfo._id;
+  delete product.categoria
 
   db.products.replaceOne({"_id": product._id}, product);
 })
