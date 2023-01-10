@@ -1,0 +1,11 @@
+use("ecomm-product");
+
+db.products.createIndex({
+    produto: 1
+});
+
+db.products.createIndex({
+    preco_unitario: 1
+});
+
+db.products.getIndexes();
