@@ -7,7 +7,7 @@ db.products.insertMany([
     "slug": "notebook-samsung",
     "preco": NumberDecimal("3523.00"),
     "quantidade": 1,
-    "categoria": "INFORMÁTICA"
+    "categoria": { nome: "INFORMÁTICA" }
   },
     {
     "produto": "Sofá 3 lugares",
@@ -15,7 +15,7 @@ db.products.insertMany([
     "slug": "sofa-3-lugares",
     "preco": NumberDecimal("2500.00"),
     "quantidade": 1,
-    "categoria": "MÓVEIS"
+    "categoria": { nome: "MÓVEIS" }
   },
     {
     "produto": "Clean Architecture",
@@ -23,7 +23,7 @@ db.products.insertMany([
     "slug": "livro-clean-architecture",
     "preco": NumberDecimal("102.90"),
     "quantidade": 2,
-    "categoria": "LIVROS"
+    "categoria": { nome: "LIVROS" }
   },
     {
     "produto": "Mesa de jantar 6 lugares",
@@ -31,7 +31,7 @@ db.products.insertMany([
     "slug": "mesa-de-jantar-6-lugares",
     "preco": NumberDecimal("3678.98"),
     "quantidade": 1,
-    "categoria": "MÓVEIS"
+    "categoria": { nome: "MÓVEIS" }
   },
     {
     "produto": "iPhone 13 Pro",
@@ -39,7 +39,7 @@ db.products.insertMany([
     "slug": "iphone-13-pro",
     "preco": NumberDecimal("9176.00"),
     "quantidade": 6,
-    "categoria": "CELULARES"
+    "categoria": { nome: "CELULARES" }
   },
     {
     "produto": "Monitor Dell 27\"",
@@ -47,7 +47,7 @@ db.products.insertMany([
     "slug": "monitor-dell-27",
     "preco": NumberDecimal("1889.00"),
     "quantidade": 3,
-    "categoria": "INFORMÁTICA"
+    "categoria": { nome: "INFORMÁTICA" }
   },
     {
     "produto": "Implementing Domain-Driven Design",
@@ -55,7 +55,7 @@ db.products.insertMany([
     "slug": "livro-implementing-ddd",
     "preco": NumberDecimal("144.07"),
     "quantidade": 3,
-    "categoria": "LIVROS"
+    "categoria": { nome: "LIVROS" }
   },
     {
     "produto": "Jogo de pneus",
@@ -63,7 +63,7 @@ db.products.insertMany([
     "slug": "jogo-de-pneus-continental-13",
     "preco": NumberDecimal("1276.79"),
     "quantidade": 1,
-    "categoria": "AUTOMOTIVA"
+    "categoria": { nome: "AUTOMOTIVA" }
   },
     {
     "produto": "Clean Code",
@@ -71,7 +71,7 @@ db.products.insertMany([
     "slug": "livro-clean",
     "preco": NumberDecimal("95.17"),
     "quantidade": 1,
-    "categoria": "LIVROS"
+    "categoria": { nome: "LIVROS" }
   },
     {
     "produto": "Galaxy S22 Ultra",
@@ -79,7 +79,7 @@ db.products.insertMany([
     "slug": "celular-galaxy-22-ultra",
     "preco": NumberDecimal("8549.10"),
     "quantidade": 5,
-    "categoria": "CELULARES"
+    "categoria": { nome: "CELULARES" }
   },
     {
     "produto": "Macbook Pro 16",
@@ -87,7 +87,7 @@ db.products.insertMany([
     "slug": "notebook-macbook-pro-16",
     "preco": NumberDecimal("31752.00"),
     "quantidade": 1,
-    "categoria": "INFORMÁTICA"
+    "categoria": { nome: "INFORMÁTICA" }
   },
     {
     "produto": "Refactoring Improving the Design of Existing Code",
@@ -95,7 +95,7 @@ db.products.insertMany([
     "slug": "livro-refactoring",
     "preco": NumberDecimal("173.90"),
     "quantidade": 1,
-    "categoria": "LIVROS"
+    "categoria": { nome: "LIVROS" }
   },
     {
     "produto": "Cama queen size",
@@ -103,7 +103,7 @@ db.products.insertMany([
     "slug": "cama-queen-size-dener",
     "preco": NumberDecimal("3100.00"),
     "quantidade": 2,
-    "categoria": "MÓVEIS"
+    "categoria": { nome: "MÓVEIS" }
   },
     {
     "produto": "Central multimidia",
@@ -111,7 +111,7 @@ db.products.insertMany([
     "slug": "central-multimidia-automotiva",
     "preco": NumberDecimal("711.18"),
     "quantidade": 1,
-    "categoria": "AUTOMOTIVA"
+    "categoria": { nome: "AUTOMOTIVA" }
   },
     {
     "produto": "Building Microservices",
@@ -119,7 +119,7 @@ db.products.insertMany([
     "slug": "livro-building-microservices",
     "preco": NumberDecimal("300.28"),
     "quantidade": 2,
-    "categoria": "LIVROS"
+    "categoria": { nome: "LIVROS" }
   },
     {
     "produto": "Galaxy Tab S8",
@@ -127,6 +127,6 @@ db.products.insertMany([
     "slug": "tablet-galaxy-tab-s8",
     "preco": NumberDecimal("5939.10"),
     "quantidade": 4,
-    "categoria": "INFORMÁTICA"
+    "categoria": { nome: "INFORMÁTICA" }
   }
 ])
