@@ -1,3 +1,3 @@
 # ecomm
 
-Projeto de Ecommerce criando durante o programa LevelUp da Alura
+Projeto de Ecommerce criado durante o programa LevelUp da Alura
