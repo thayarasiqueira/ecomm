@@ -1,0 +1,55 @@
+use("ecomm-account");
+
+db.accounts.insertMany([
+  {
+    "nome": "Ada Lovelace",
+    "email": "adalovelace@email.com", 
+    "senha": "senhaada",
+    "createdDate": new ISODate(),
+    "cpf": 74170544048,
+    "telefone":  37485954837,
+    "endereco": {
+        "logradouro": "Rua Afonso Cavalcante de Oliveira",
+        "numero": "582",
+        "complemento": "Apartamento 10",
+        "bairro": "Jangurussu",
+        "cep": "60866202",
+        "cidade": "Fortaleza",
+        "uf": "CE",
+    }
+  },
+    {
+    "nome": "Marie Curie",
+    "email": "mariecurie@email.com", 
+    "senha": "senhamarie",
+    "createdDate": new ISODate(),
+    "cpf": 13245299036,
+    "telefone":   58955576176,
+    "endereco": {
+        "logradouro": "Avenida Ceará",
+        "numero": "2478",
+        "complemento": "S/N",
+        "bairro": "Cerâmica",
+        "cep": "69905062",
+        "cidade": "Rio Branco",
+        "uf": "AC",
+    }
+  },
+    {
+    "nome": "Rosalind Franklin",
+    "email": "mariecurie@email.com", 
+    "senha": "senharosalind",
+    "createdDate": new ISODate(),
+    "cpf": 53797887000,
+    "telefone":   16551237967,
+        "endereco": {
+        "logradouro": "Quadra 303 Norte Alameda 18",
+        "numero": "1575",
+        "bairro": "Plano Diretor Norte",
+        "complemento": "S/N",
+        "cep": "77001274",
+        "cidade": "Palmas",
+        "uf": "TO",
+    }
+  },
+])
