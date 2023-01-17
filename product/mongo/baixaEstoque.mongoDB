@@ -1,0 +1,6 @@
+use("ecomm-product");
+
+db.products.updateOne(
+  { "nome": "Galaxy Tab S8", "quantidade": { $gte: 2 } },
+  { $inc: { "quantidade": -2 } }
+);
