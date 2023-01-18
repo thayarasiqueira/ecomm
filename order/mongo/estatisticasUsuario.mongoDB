@@ -1,0 +1,27 @@
+use("ecomm-order");
+
+db.orders.aggregate(
+    [
+        {
+            $match: {
+                cliente: "Ada Lovelace"
+            }
+        },
+        {
+            $project: {
+                cliente: "$nome",
+                itens: {
+                    $sum: "$pedidos.quantidade"
+                },
+                valorTotal: {
+                    $sum: "$pedidos.preco"
+                },
+                valorDesconto: {
+                    $sum: "$pedidos.valorDesconto"
+                }
+            }
+        }
+    ]
+)
+
+
