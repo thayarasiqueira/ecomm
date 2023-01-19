@@ -1,5 +1,7 @@
 use("ecomm-order");
 
+use("ecomm-order");
+
 db.orders.aggregate(
     [
         {
@@ -8,20 +10,44 @@ db.orders.aggregate(
             }
         },
         {
-            $project: {
-                cliente: "$nome",
+            $unwind: "$pedidos"
+        },
+        {
+            $addFields: {
+                total: {
+                    $multiply: ["$pedidos.quantidade", "$pedidos.preco"]
+                },
+                totalDesconto: {
+                    $multiply: ["$pedidos.quantidade","$pedidos.valorDesconto"]
+                }
+            }
+        },
+        {
+            $group: {
+                _id: "$_id",
                 itens: {
-                    $sum: "$pedidos.quantidade"
+                    $push: "$pedidos.quantidade"
                 },
-                valorTotal: {
-                    $sum: "$pedidos.preco"
+                total: {
+                    $push: "$total"
                 },
-                valorDesconto: {
-                    $sum: "$pedidos.valorDesconto"
+                totalDesconto: {
+                    $push: "$totalDesconto"
+                }
+            }
+        },
+        {
+            $project: {
+                itens: {
+                    $sum: "$itens"
+                },
+                total: {
+                    $sum: "$total"
+                },
+                totalDesconto: {
+                    $sum: "$totalDesconto"
                 }
             }
         }
     ]
 )
-
-
