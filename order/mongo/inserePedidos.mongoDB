@@ -4,7 +4,7 @@ db.orders.insertMany([
   {
     "createdDate": new ISODate(),
     "cliente": "Ada Lovelace",
-    "endereco": {
+    "enderecoDeEntrega": {
         "logradouro": "Rua Afonso Cavalcante de Oliveira",
         "numero": "582",
         "complemento": "Apartamento 10",
@@ -13,25 +13,31 @@ db.orders.insertMany([
         "cidade": "Fortaleza",
         "uf": "CE",
     },
-    "pedidos": [
+    "itens": [
         {
-            "nomeProduto": "Echo Dot (4ª Geração): Smart Speaker com Alexa",
+              "_id": {
+               "$oid": "63c55f04d1c852ebb46cd351"
+            },
+            "nomeProduto": "Galaxy Tab S8",
             "quantidade": 1,
-            "preco": NumberDecimal(399.00),
-            "valorDesconto": NumberDecimal(50.00),
+            "preco": NumberDecimal(5939.10),
+            "valorDesconto": NumberDecimal(739.00),
         },
         {
-            "nomeProduto": "Headphone Philips Wireless BT Preto TAH1205BK/00",
+            "_id": {
+            "$oid": "63c55f04d1c852ebb46cd34e"
+            },
+            "nomeProduto": "Cama queen size",
             "quantidade": 3,
-            "preco": NumberDecimal(97.00),
-            "valorDesconto":  NumberDecimal(7.00),
+            "preco": NumberDecimal(3100.00),
+            "valorDesconto":  NumberDecimal(100.00),
         }
     ]
   },
     {
     "createdDate": new ISODate(),
     "cliente": "Marie Curie",
-    "endereco": {
+    "enderecoDeEntrega": {
         "logradouro": "Avenida Ceará",
         "numero": "2478",
         "complemento": "S/N",
@@ -40,12 +46,15 @@ db.orders.insertMany([
         "cidade": "Rio Branco",
         "uf": "AC",
     },
-        "pedidos": [
+        "itens": [
         {
-            "nomeProduto": "SAMSUNG Galaxy Z Flip 4",
+            "_id": {
+                "$oid": "63c55f04d1c852ebb46cd350"
+            },
+            "nomeProduto": "Building Microservices",
             "quantidade": 1,
-            "preco": NumberDecimal(6999.00),
-            "valorDesconto": NumberDecimal(999.00),
+            "preco": NumberDecimal(300.28),
+            "valorDesconto": NumberDecimal(50.00),
         }
     ]
   },
