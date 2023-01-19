@@ -1,7 +1,5 @@
 use("ecomm-order");
 
-use("ecomm-order");
-
 db.orders.aggregate(
     [
         {
