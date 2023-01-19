@@ -8,15 +8,15 @@ db.orders.aggregate(
             }
         },
         {
-            $unwind: "$pedidos"
+            $unwind: "$itens"
         },
         {
             $addFields: {
                 total: {
-                    $multiply: ["$pedidos.quantidade", "$pedidos.preco"]
+                    $multiply: ["$itens.quantidade", "$itens.preco"]
                 },
                 totalDesconto: {
-                    $multiply: ["$pedidos.quantidade","$pedidos.valorDesconto"]
+                    $multiply: ["$itens.quantidade","$itens.valorDesconto"]
                 }
             }
         },
@@ -24,7 +24,7 @@ db.orders.aggregate(
             $group: {
                 _id: "$_id",
                 itens: {
-                    $push: "$pedidos.quantidade"
+                    $push: "$itens.quantidade"
                 },
                 total: {
                     $push: "$total"
