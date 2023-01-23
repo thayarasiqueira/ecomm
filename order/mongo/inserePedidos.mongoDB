@@ -1,0 +1,61 @@
+use("ecomm-order");
+
+db.orders.insertMany([
+  {
+    "createdDate": new ISODate(),
+    "cliente": "Ada Lovelace",
+    "enderecoDeEntrega": {
+        "logradouro": "Rua Afonso Cavalcante de Oliveira",
+        "numero": "582",
+        "complemento": "Apartamento 10",
+        "bairro": "Jangurussu",
+        "cep": "60866202",
+        "cidade": "Fortaleza",
+        "uf": "CE",
+    },
+    "itens": [
+        {
+              "_id": {
+               "$oid": "63c55f04d1c852ebb46cd351"
+            },
+            "nomeProduto": "Galaxy Tab S8",
+            "quantidade": 1,
+            "preco": NumberDecimal(5939.10),
+            "valorDesconto": NumberDecimal(739.00),
+        },
+        {
+            "_id": {
+            "$oid": "63c55f04d1c852ebb46cd34e"
+            },
+            "nomeProduto": "Cama queen size",
+            "quantidade": 3,
+            "preco": NumberDecimal(3100.00),
+            "valorDesconto":  NumberDecimal(100.00),
+        }
+    ]
+  },
+    {
+    "createdDate": new ISODate(),
+    "cliente": "Marie Curie",
+    "enderecoDeEntrega": {
+        "logradouro": "Avenida Ceará",
+        "numero": "2478",
+        "complemento": "S/N",
+        "bairro": "Cerâmica",
+        "cep": "69905062",
+        "cidade": "Rio Branco",
+        "uf": "AC",
+    },
+        "itens": [
+        {
+            "_id": {
+                "$oid": "63c55f04d1c852ebb46cd350"
+            },
+            "nomeProduto": "Building Microservices",
+            "quantidade": 1,
+            "preco": NumberDecimal(300.28),
+            "valorDesconto": NumberDecimal(50.00),
+        }
+    ]
+  },
+])

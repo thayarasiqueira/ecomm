@@ -1,0 +1,51 @@
+use("ecomm-order");
+
+db.orders.aggregate(
+    [
+        {
+            $match: {
+                cliente: "Ada Lovelace"
+            }
+        },
+        {
+            $unwind: "$itens"
+        },
+        {
+            $addFields: {
+                total: {
+                    $multiply: ["$itens.quantidade", "$itens.preco"]
+                },
+                totalDesconto: {
+                    $multiply: ["$itens.quantidade","$itens.valorDesconto"]
+                }
+            }
+        },
+        {
+            $group: {
+                _id: "$_id",
+                itens: {
+                    $push: "$itens.quantidade"
+                },
+                total: {
+                    $push: "$total"
+                },
+                totalDesconto: {
+                    $push: "$totalDesconto"
+                }
+            }
+        },
+        {
+            $project: {
+                itens: {
+                    $sum: "$itens"
+                },
+                total: {
+                    $sum: "$total"
+                },
+                totalDesconto: {
+                    $sum: "$totalDesconto"
+                }
+            }
+        }
+    ]
+)
