@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+  title: Ecomm Products
+  description: |-
+    This API is responsible for the products' requests and responses in the e-commerce.
+  version: 0.0.1
+paths:
+  /api/categories:
+    get:
+      summary: List categories
+      description: List all categories
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        _id:
+          type: object
+        nome:
+          type: string
+        status:
+          type: string
