@@ -15,7 +15,7 @@ db.orders.insertMany([
     },
     "itens": [
         {
-              "_id": {
+            "_id": {
                "$oid": "63c55f04d1c852ebb46cd351"
             },
             "nomeProduto": "Galaxy Tab S8",
