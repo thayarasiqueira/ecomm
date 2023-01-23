@@ -18,6 +18,25 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Category"
+  /api/admin/categories:
+    post:
+      summary: Add category
+      description: Add new category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                nome:
+                  type: string
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Category"
 components:
   schemas:
     Category:
