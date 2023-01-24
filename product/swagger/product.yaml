@@ -69,8 +69,10 @@ components:
       properties:
         _id:
           type: object
+          properties:
+            $oid:
+              type: string
         nome:
           type: string
         status:
           type: string
-# commit to comment that the last three commits should have had *docs* as prefix instead of feat
