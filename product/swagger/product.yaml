@@ -152,6 +152,127 @@ paths:
           description: not found
         '500':
           description: internal server error
+  /api/products:
+    get:
+      summary: List products
+      description: List all products
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        '404':
+          description: not found
+        '500':
+          description: internal server error
+  /api/admin/products:
+    post:
+      summary: Add product
+      description: Add new product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                nome:
+                  type: string
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Product"
+        '404':
+          description: not found
+        '500':
+          description: internal server error
+  /api/products/{_id}:
+    get:
+      summary: Find product
+      description: Find one specific product
+      parameters:
+        - name: _id
+          in: path
+          description: ID of product that needs to be fetched
+          required: true
+          schema:
+            type: object
+            properties:
+              $oid:
+                type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Product"
+        '400':
+          description: invalid ID supplied
+        '404':
+          description: not found
+        '500':
+          description: internal server error
+  /api/admin/products/{_id}:
+    put:
+      summary: Update product
+      description: Update product by entering the whole updated product
+      parameters:
+      - name: _id
+        in: path
+        description: ID of product that needs to be updated
+        required: true
+        schema:
+          type: object
+          properties:
+            $oid:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/Product"
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Product"
+        '400':
+          description: invalid ID supplied
+        '404':
+          description: not found
+        '500':
+          description: internal server error
+    delete:
+      summary: Delete product
+      description: Delete product by entering its ID
+      parameters:
+      - name: _id
+        in: path
+        description: ID of product that needs to be deleted
+        required: true
+        schema:
+          type: object
+          properties:
+            $oid:
+              type: string
+      responses:
+        '200':
+          description: "ok"
+        '400':
+          description: invalid ID supplied
+        '404':
+          description: not found
+        '500':
+          description: internal server error
 components:
   schemas:
     Category:
@@ -166,3 +287,32 @@ components:
           type: string
         status:
           type: string
+    Product:
+      type: object
+      properties:
+        _id:
+          type: object
+          properties:
+            $oid:
+              type: string
+        nome:
+          type: string
+        descricao:
+          type: string
+        slug:
+          type: string
+        preco:
+          type: number
+        quantidade:
+          type: integer
+          format: int64
+        categoria:
+          type: object
+          properties:
+            nome:
+              type: string
+            categoria_id:
+              type: object
+              properties:
+                $oid:
+                  type: string
