@@ -5,20 +5,18 @@ info:
     This API is responsible for the orders' requests and responses in the e-commerce.
   version: 0.0.1
 paths:
-  /api/orders/{_id}:
+  /api/orders/{id}:
     get:
       summary: Find order
       description: Find one specific order
       parameters:
-        - name: _id
+        - name: id
           in: path
           description: ID of order that needs to be fetched
           required: true
           schema:
-            type: object
-            properties:
-              $oid:
-                type: string
+            type: string
+            format: uuid
       responses:
         '200':
           description: ok
@@ -30,8 +28,6 @@ paths:
           description: invalid ID supplied
         '404':
           description: not found
-        '500':
-          description: internal server error
   /api/admin/orders:
     post:
       summary: Add order
@@ -48,18 +44,33 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/Order"
-        '500':
-          description: internal server error
+        '401':
+          description: unauthorized
 components:
   schemas:
+    Items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nomeProduto:
+          type: string
+        quantidade:
+          type: number
+          format: int64
+        preco:
+          type: number
+          format: double
+        valorDesconto:
+          type: number
+          format: double
     Order:
       type: object
       properties:
-        _id:
-          type: object
-          properties:
-            $oid:
-              type: string
+        id:
+          type: string
+          format: uuid
         createdDate:
           type: string
           format: date-time
@@ -86,22 +97,3 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Items"
-    Items:
-      type: object
-      properties:
-        _id:
-        type: object
-        properties:
-          $oid:
-            type: string
-        nomeProduto:
-          type: string
-        quantidade:
-          type: number
-          format: int64
-        preco:
-          type: number
-          format: double
-        valorDesconto:
-          type: number
-          format: double

@@ -41,6 +41,8 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/Category"
+        '401':
+          description: unauthorized
         '500':
           description: internal server error
   /api/categories/{_id}:
@@ -98,6 +100,8 @@ paths:
                   $ref: "#/components/schemas/Category"
         '400':
           description: invalid ID supplied
+        '401':
+          description: unauthorized
         '404':
           description: not found
         '500':
@@ -116,10 +120,12 @@ paths:
             $oid:
               type: string
       responses:
-        '200':
-          description: "ok"
+        '204':
+          description: no content
         '400':
           description: invalid ID supplied
+        '401':
+          description: unauthorized
         '404':
           description: not found
         '500':
@@ -146,6 +152,8 @@ paths:
                   $ref: "#/components/schemas/Category"
         '400':
           description: invalid ID supplied
+        '401':
+          description: unauthorized
         '404':
           description: not found
         '500':
@@ -175,10 +183,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties: 
-                nome:
-                  type: string
+              $ref: "#/components/schemas/Product"
       responses:
         '201':
           description: created
@@ -186,10 +191,8 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/Product"
-        '404':
-          description: not found
-        '500':
-          description: internal server error
+        '401':
+          description: unauthorized
   /api/products/{_id}:
     get:
       summary: Find product
@@ -243,6 +246,8 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/Product"
+        '401':
+          description: unauthorized
         '400':
           description: invalid ID supplied
         '404':
@@ -263,8 +268,10 @@ paths:
             $oid:
               type: string
       responses:
-        '200':
-          description: "ok"
+        '204':
+          description: no content
+        '401':
+          description: unauthorized
         '400':
           description: invalid ID supplied
         '404':
@@ -357,11 +364,9 @@ components:
     Category:
       type: object
       properties:
-        _id:
-          type: object
-          properties:
-            $oid:
-              type: string
+        id:
+          type: string
+          format: uuid
         nome:
           type: string
         status:
@@ -369,11 +374,9 @@ components:
     Product:
       type: object
       properties:
-        _id:
-          type: object
-          properties:
-            $oid:
-              type: string
+        id:
+          type: string
+          format: uuid
         nome:
           type: string
         descricao:
@@ -385,13 +388,6 @@ components:
         quantidade:
           type: integer
           format: int64
-        categoria:
-          type: object
-          properties:
-            nome:
-              type: string
-            categoria_id:
-              type: object
-              properties:
-                $oid:
-                  type: string
+        categoria_id:
+          type: string
+          format: uuid
