@@ -41,8 +41,6 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/Category"
-        '404':
-          description: not found
         '500':
           description: internal server error
   /api/categories/{_id}:
