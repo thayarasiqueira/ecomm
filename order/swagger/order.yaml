@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Ecomm Orders
+  description: |-
+    This API is responsible for the orders' requests and responses in the e-commerce.
+  version: 0.0.1
+paths:
+  /api/orders/{_id}:
+    get:
+      summary: Find order
+      description: Find one specific order
+      parameters:
+        - name: _id
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: object
+            properties:
+              $oid:
+                type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Order"
+        '400':
+          description: invalid ID supplied
+        '404':
+          description: not found
+        '500':
+          description: internal server error
+  /api/admin/orders:
+    post:
+      summary: Add order
+      description: Add new order
+      requestBody:
+        content:
+          application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Order"
+        '500':
+          description: internal server error
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        _id:
+          type: object
+          properties:
+            $oid:
+              type: string
+        createdDate:
+          type: string
+          format: date-time
+        cliente:
+          type: string
+        enderecoDeEntrega:
+          type: object
+          properties:
+            logradouro:
+              type: string
+            numero:
+              type: string
+            complemento:
+              type: string
+            bairro:
+              type: string            
+            cep:
+              type: string
+            cidade:
+              type: string
+            uf:
+              type: string
+          itens:
+            type: array
+            items:
+              $ref: "#/components/schemas/Items"
+    Items:
+      type: object
+      properties:
+        _id:
+        type: object
+        properties:
+          $oid:
+            type: string
+        nomeProduto:
+          type: string
+        quantidade:
+          type: number
+          format: int64
+        preco:
+          type: number
+          format: double
+        valorDesconto:
+          type: number
+          format: double
