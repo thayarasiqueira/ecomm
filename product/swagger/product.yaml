@@ -18,6 +18,10 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Category"
+        '404':
+          description: not found
+        '500':
+          description: internal server error
   /api/admin/categories:
     post:
       summary: Add category
@@ -37,6 +41,10 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/Category"
+        '404':
+          description: not found
+        '500':
+          description: internal server error
   /api/categories/{_id}:
     get:
       summary: Find category
@@ -62,6 +70,8 @@ paths:
           description: invalid ID supplied
         '404':
           description: not found
+        '500':
+          description: internal server error
   /api/admin/categories/{_id}:
     put:
       summary: Update category
