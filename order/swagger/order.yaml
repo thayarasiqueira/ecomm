@@ -26,6 +26,8 @@ paths:
                   $ref: "#/components/schemas/Order"
         '400':
           description: invalid ID supplied
+        '404':
+          description: not found
   /api/admin/orders:
     post:
       summary: Add order
@@ -46,23 +48,6 @@ paths:
           description: unauthorized
 components:
   schemas:
-    Items:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        nomeProduto:
-          type: string
-        quantidade:
-          type: number
-          format: int64
-        preco:
-          type: number
-          format: double
-        valorDesconto:
-          type: number
-          format: double
     Order:
       type: object
       properties:
@@ -91,7 +76,24 @@ components:
               type: string
             uf:
               type: string
-          itens:
-            type: array
-            items:
-              $ref: "#/components/schemas/Items"
+        itens:
+          type: array
+          items:
+            $ref: "#/components/schemas/Items"
+    Items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nomeProduto:
+          type: string
+        quantidade:
+          type: number
+          format: int64
+        preco:
+          type: number
+          format: double
+        valorDesconto:
+          type: number
+          format: double
