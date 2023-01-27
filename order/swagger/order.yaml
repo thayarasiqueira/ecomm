@@ -79,8 +79,8 @@ components:
         itens:
           type: array
           items:
-            $ref: "#/components/schemas/Items"
-    Items:
+            $ref: "#/components/schemas/Itens"
+    Itens:
       type: object
       properties:
         id:
