@@ -26,8 +26,6 @@ paths:
                   $ref: "#/components/schemas/Order"
         '400':
           description: invalid ID supplied
-        '404':
-          description: not found
   /api/admin/orders:
     post:
       summary: Add order
