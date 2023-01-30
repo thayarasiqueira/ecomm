@@ -228,41 +228,28 @@ paths:
           description: no content
         '401':
           description: unauthorized
-  /api/products/findByPrice:
-   get:
-      summary: Find products by price
-      description: Find products by price range
-      parameters:
-        - name: priceRange
-          in: query
-          description: price values that need to be considered for filter
-          required: true
-          schema:
-            type: object
-            properties:
-              minPrice: 
-                type: number
-              maxPrice:
-                type: number
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'          
-        '400':
-          description: invalid price values
-  /api/products/findByStatus:
+  /api/products/filter:
      get:
-      summary: Finds Products by status
+      summary: Find products by filter
       parameters:
+        - name: minPrice
+          in: query
+          description: minimum price value that needs to be considered for filter
+          schema:
+            type: string
+        - name: maxPrice
+          in: query
+          description: maximum price value that needs to be considered for filter
+          schema:
+            type: string
         - name: status
           in: query
           description: Status values that need to be considered for filter
-          required: true
+          schema:
+            type: string
+        - name: stockGreaterThan
+          in: query
+          description: stockGreaterThan value that needs to be considered for filter
           schema:
             type: string
       responses:
@@ -275,28 +262,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Product'         
         '400':
-          description: invalid status
-  /api/products/findByStock:
-    get:
-      summary: Finds products by stock value
-      parameters:
-        - name: stockGreaterThan
-          in: query
-          description: stockGreaterThan value that needs to be considered for filter
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'         
-        '400':
-          description: invalid value
+          description: invalid filter
 components:
   schemas:
     Category:
