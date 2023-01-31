@@ -1,6 +1,6 @@
 import categories from '../models/Category.js';
 import validateCategory from '../validations/categoriesValidation.js';
-
+// put, delete, patch
 class CategoryController {
 
     static findCategories = (_req, res) => {
@@ -33,6 +33,42 @@ class CategoryController {
               }
         })
     }
+
+    static updateCategory = (req, res) => {
+        const { id } = req.params;
+    
+        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+          if(!err) {
+            res.status(200).send({message: 'Category successfully updated'})
+          } else {
+            res.status(500).send({message: err.message})
+          }
+        })
+      }
+    
+      static updateStatusCategory = (req, res) => {
+        const { id } = req.params;
+    
+        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+          if(!err) {
+            res.status(200).send({message: 'Category successfully updated'})
+          } else {
+            res.status(500).send({message: err.message})
+          }
+        })
+      }
+
+      static deleteCategory = (req, res) => {
+        const { id } = req.params;
+    
+        categories.findByIdAndDelete(id, (err) => {
+          if(!err){
+            res.status(200).send({message: 'Category successfully deleted'})
+          } else {
+            res.status(500).send({message: err.message})
+          }
+        })
+      }
 }
 
 export default CategoryController;
