@@ -4,7 +4,7 @@ const validateCategory = (category) => {
     const schema = Joi.object().keys({
         _id: Joi.string(),
         nome: Joi.string()
-            .min(3)
+            .min(4)
             .required(),
         status: Joi.string()
     })
