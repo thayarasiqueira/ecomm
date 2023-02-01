@@ -5,6 +5,7 @@ const validateCategory = (req, _res, next) => {
         _id: Joi.string(),
         nome: Joi.string()
             .min(4)
+            .pattern(new RegExp(/^[^0-9]/))
             .required(),
         status: Joi.string()
     })
