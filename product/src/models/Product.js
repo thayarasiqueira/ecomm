@@ -16,10 +16,7 @@ const productSchema = new mongoose.Schema(
         slug: {type: String},
         preco: {type: Number},
         quantidade: {type: Number},
-        categoria: {
-            type: categorySchema,
-            required: true
-        }
+        categoria: {type: categorySchema, required: true}
     }
 );
 

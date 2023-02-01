@@ -21,8 +21,6 @@ class CategoryController {
     }
 
     static createCategory = (req, res) => {
-        const { error } = validateCategory(req.body);
-        if (error) throw error;
         const category = new categories(req.body);
 
         category.save((err) => {
@@ -63,7 +61,7 @@ class CategoryController {
     
         categories.findByIdAndDelete(id, (err) => {
           if(!err){
-            res.status(200).send({message: 'Category successfully deleted'})
+            res.status(204).send({message: 'Category successfully deleted'})
           } else {
             res.status(500).send({message: err.message})
           }

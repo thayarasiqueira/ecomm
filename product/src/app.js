@@ -3,7 +3,7 @@ import db from './config/dbConnect.js';
 import routes from './routes/index.js';
 
 db.once('open', () => {
-    console.log('conexão feita com sucesso!');
+    console.log('Db successfully connected!');
 })
 
 const app = express();
