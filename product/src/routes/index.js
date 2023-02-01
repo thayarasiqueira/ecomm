@@ -1,6 +1,6 @@
 import express from 'express';
 import categories from '../routes/categoriesRoutes.js';
-
+import products from '../routes/productsRoutes.js';
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
@@ -9,7 +9,8 @@ const routes = (app) => {
 
 app.use(
     express.json(),
-    categories
+    categories,
+    products
     )
 }
 

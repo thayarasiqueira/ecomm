@@ -2,7 +2,7 @@ import express from 'express';
 import CategoryController from '../controllers/categoriesController.js';
 
 const router = express.Router();
-//put, delete, patch
+
 router
     .get('/categories', CategoryController.findCategories)
     .get('/categories/:id', CategoryController.findCategoryById)

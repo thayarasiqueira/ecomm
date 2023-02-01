@@ -1,6 +1,6 @@
 import categories from '../models/Category.js';
 import validateCategory from '../validations/categoriesValidation.js';
-// put, delete, patch
+
 class CategoryController {
 
     static findCategories = (_req, res) => {
