@@ -42,6 +42,3 @@ const validateCategoryId = (req, res, next) => {
 }
 
 export { validateProduct, validateCategoryId };
-
-// - o nome do produto não deve começar com números
-// - a slug só pode conter letras maiúsculas ou minúsculas, números e hífens
