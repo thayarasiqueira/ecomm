@@ -9,10 +9,10 @@ const router = express.Router();
 router
     .get('/categories', CategoryController.findCategories)
     .get('/categories/:id', CategoryController.findCategoryById)
-    .post('/categories', validateCategory, CategoryController.createCategory)
-    .put('/categories/:id', CategoryController.updateCategory)
-    .patch('/categories/:id', CategoryController.updateStatusCategory)
-    .delete('/categories/:id', CategoryController.deleteCategory)
+    .post('/admin/categories', validateCategory, CategoryController.createCategory)
+    .put('/admin/categories/:id', CategoryController.updateCategory)
+    .patch('/admin/categories/:id', CategoryController.updateStatusCategory)
+    .delete('/admin/categories/:id', CategoryController.deleteCategory)
 
     .use('/api-docs', swaggerUi.serve)
     .get('/api-docs', swaggerUi.setup(swaggerDocument));

@@ -9,9 +9,9 @@ const router = express.Router();
 router
     .get('/accounts', AccountController.findAccounts)
     .get('/accounts/:id', AccountController.findAccountById)
-    .post('/accounts', validateAccount, AccountController.createAccount)
-    .put('/accounts/:id', validateAccount, AccountController.updateAccount)
-    .delete('/accounts/:id', AccountController.deleteAccount)
+    .post('/admin/accounts', validateAccount, AccountController.createAccount)
+    .put('/admin/accounts/:id', validateAccount, AccountController.updateAccount)
+    .delete('/admin/accounts/:id', AccountController.deleteAccount)
 
     .use('/api-docs', swaggerUi.serve)
     .get('/api-docs', swaggerUi.setup(swaggerDocument));

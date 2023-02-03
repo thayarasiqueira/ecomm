@@ -9,9 +9,9 @@ const router = express.Router();
 router
     .get('/products', ProductController.findProducts)
     .get('/products/:id', ProductController.findProductById)
-    .post('/products', validateProduct, validateCategoryId, ProductController.createProduct)
-    .put('/products/:id', ProductController.updateProduct)
-    .delete('/products/:id', ProductController.deleteProduct)
+    .post('/admin/products', validateProduct, validateCategoryId, ProductController.createProduct)
+    .put('/admin/products/:id', ProductController.updateProduct)
+    .delete('/admin/products/:id', ProductController.deleteProduct)
 
     .use('/api-docs', swaggerUi.serve)
     .get('/api-docs', swaggerUi.setup(swaggerDocument));
