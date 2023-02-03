@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
-const validateAccount = (req, _res, next) => {
-    const nestedSchema = Joi.object().keys({
+const validateAccount = (req, res, next) => {
+    const addressSchema = Joi.object().keys({
         _id: false,
         logradouro: Joi.string()
             .required(),
@@ -39,11 +39,11 @@ const validateAccount = (req, _res, next) => {
             .min(10)
             .max(13)
             .pattern(new RegExp(/^[0-9]*$/)),
-        endereco: nestedSchema,
+        endereco: addressSchema,
     })
 
     const { error } = schema.validate(req.body);
-    if (error) throw error;
+    if (error) return res.status(422).json({ message: error.message});
 
     next();
 }

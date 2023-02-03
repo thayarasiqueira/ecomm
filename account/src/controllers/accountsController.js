@@ -3,18 +3,18 @@ import accounts from '../models/Account.js';
 class AccountController {
     
     static findAccounts = (_req, res) => {
-        accounts.find((_err, account) => {
-            res.status(200).json(account);
+        accounts.find((_err, accounts) => {
+            res.status(200).json(accounts);
         })
     }
 
     static findAccountById = (req, res) => {
         const { id } = req.params;
-        accounts.findById(id, (err, Account) => {
+        accounts.findById(id, (err, account) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: err.message});
               } else {
-                res.status(201).json(Account)
+                res.status(200).json(account);
               }
         })
     }
@@ -23,9 +23,9 @@ class AccountController {
         const account = new accounts(req.body);
         account.save((err, account) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: err.message});
               } else {
-                res.status(201).set('Location', `/admin/accounts/${account.id}`).json(account)
+                res.status(201).set('Location', `/admin/accounts/${account.id}`).json(account);
               }
         })
     }

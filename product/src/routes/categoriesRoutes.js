@@ -14,7 +14,4 @@ router
     .patch('/admin/categories/:id', CategoryController.updateStatusCategory)
     .delete('/admin/categories/:id', CategoryController.deleteCategory)
 
-    .use('/api-docs', swaggerUi.serve)
-    .get('/api-docs', swaggerUi.setup(swaggerDocument));
-
 export default router;
