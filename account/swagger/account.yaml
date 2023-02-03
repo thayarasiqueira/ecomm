@@ -5,7 +5,7 @@ info:
     This API is responsible for the accounts' requests and responses in the e-commerce.
   version: 0.0.1
 paths:
-  /api/accounts:
+  /api/admin/accounts:
     get:
       summary: List accounts
       description: List all accounts
@@ -18,7 +18,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Account"
-  /api/admin/accounts:
     post:
       summary: Add account
       description: Add new account
