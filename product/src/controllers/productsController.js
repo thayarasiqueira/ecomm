@@ -10,22 +10,22 @@ class ProductController {
 
     static findProductById = (req, res) => {
         const { id } = req.params;
-        products.findById(id, (err, Product) => {
+        products.findById(id, (err, product) => {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                res.status(201).json(Product);
+                res.status(201).json(product);
               }
         })
     }
 
     static createProduct = (req, res) => {
         const Product = new products(req.body);
-        Product.save((err) => {
+        Product.save((err, product) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: err.message});
               } else {
-                res.status(201).set('Location', `/admin/products/${category.id}`).json(Product)
+                res.status(201).set('Location', `/admin/products/${product.id}`).json(Product);
               }
         })
     }
@@ -33,9 +33,9 @@ class ProductController {
     static updateProduct = (req, res) => {
         const { id } = req.params;
     
-        products.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        products.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, product) => {
           if(!err) {
-            res.status(200).set('Location', `/admin/products/${category.id}`).send({message: 'Product successfully updated'})
+            res.status(200).set('Location', `/admin/products/${product.id}`).send({message: 'Product successfully updated'})
           } else {
             res.status(500).send({message: err.message})
           }

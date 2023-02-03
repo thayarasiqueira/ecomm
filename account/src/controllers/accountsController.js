@@ -21,11 +21,11 @@ class AccountController {
 
     static createAccount = (req, res) => {
         const account = new accounts(req.body);
-        account.save((err) => {
+        account.save((err, account) => {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                res.status(201).set('Location', `/admin/accounts/${category.id}`).json(account)
+                res.status(201).set('Location', `/admin/accounts/${account.id}`).json(account)
               }
         })
     }
@@ -33,11 +33,11 @@ class AccountController {
     static updateAccount = (req, res) => {
         const { id } = req.params;
     
-        accounts.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        accounts.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, account) => {
           if(!err) {
             res.status(200).send({message: 'Account successfully updated'})
           } else {
-            res.status(500).set('Location', `/admin/accounts/${category.id}`).send({message: err.message})
+            res.status(500).set('Location', `/admin/accounts/${account.id}`).send({message: err.message})
           }
         })
       }

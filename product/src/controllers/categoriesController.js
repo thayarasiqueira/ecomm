@@ -21,7 +21,7 @@ class CategoryController {
 
     static createCategory = (req, res) => {
         const category = new categories(req.body);
-        category.save((err) => {
+        category.save((err, category) => {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
@@ -33,7 +33,7 @@ class CategoryController {
     static updateCategory = (req, res) => {
         const { id } = req.params;
     
-        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        categories.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, category) => {
           if(!err) {
             res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'})
           } else {
@@ -45,7 +45,7 @@ class CategoryController {
       static updateStatusCategory = (req, res) => {
         const { id } = req.params;
     
-        categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        categories.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, category) => {
           if(!err) {
             res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'})
           } else {
