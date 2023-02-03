@@ -14,7 +14,7 @@ class ProductController {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                res.status(201).json(Product)
+                res.status(201).json(Product);
               }
         })
     }
@@ -25,7 +25,7 @@ class ProductController {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                res.status(201).json(Product)
+                res.status(201).set('Location', `/admin/products/${category.id}`).json(Product)
               }
         })
     }
@@ -35,7 +35,7 @@ class ProductController {
     
         products.findByIdAndUpdate(id, {$set: req.body}, (err) => {
           if(!err) {
-            res.status(200).send({message: 'Product successfully updated'})
+            res.status(200).set('Location', `/admin/products/${category.id}`).send({message: 'Product successfully updated'})
           } else {
             res.status(500).send({message: err.message})
           }

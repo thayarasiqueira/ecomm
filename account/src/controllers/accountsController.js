@@ -25,7 +25,7 @@ class AccountController {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                res.status(201).json(account)
+                res.status(201).set('Location', `/admin/accounts/${category.id}`).json(account)
               }
         })
     }
@@ -37,7 +37,7 @@ class AccountController {
           if(!err) {
             res.status(200).send({message: 'Account successfully updated'})
           } else {
-            res.status(500).send({message: err.message})
+            res.status(500).set('Location', `/admin/accounts/${category.id}`).send({message: err.message})
           }
         })
       }

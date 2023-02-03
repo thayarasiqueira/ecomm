@@ -1,5 +1,4 @@
 import categories from '../models/Category.js';
-import validateCategory from '../validations/categoriesValidation.js';
 
 class CategoryController {
 
@@ -22,12 +21,11 @@ class CategoryController {
 
     static createCategory = (req, res) => {
         const category = new categories(req.body);
-
         category.save((err) => {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                res.status(201).json(category)
+                res.status(201).set('Location', `/admin/categories/${category.id}`).json(category)
               }
         })
     }
@@ -37,7 +35,7 @@ class CategoryController {
     
         categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
           if(!err) {
-            res.status(200).send({message: 'Category successfully updated'})
+            res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'})
           } else {
             res.status(500).send({message: err.message})
           }
@@ -49,7 +47,7 @@ class CategoryController {
     
         categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
           if(!err) {
-            res.status(200).send({message: 'Category successfully updated'})
+            res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'})
           } else {
             res.status(500).send({message: err.message})
           }
