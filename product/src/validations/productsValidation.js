@@ -25,9 +25,11 @@ const validateProduct = (req, _res, next) => {
     })
 
     const { error } = schema.validate(req.body);
-    if (error) throw error;
-
-    next();
+    if (error) {
+        return res.status(422).json({ message: error.message});
+    } else {
+        next();
+    }
 }
 
 const validateCategoryId = (req, res, next) => {

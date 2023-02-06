@@ -1,8 +1,6 @@
 import express from 'express';
 import CategoryController from '../controllers/categoriesController.js';
 import validateCategory from '../validations/categoriesValidation.js';
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../../swagger/product.json' assert { type: "json" };;
 
 const router = express.Router();
 

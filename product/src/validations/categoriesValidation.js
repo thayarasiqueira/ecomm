@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const validateCategory = (req, _res, next) => {
+const validateCategory = (req, res, next) => {
     const schema = Joi.object().keys({
         _id: Joi.string(),
         nome: Joi.string()
@@ -11,9 +11,11 @@ const validateCategory = (req, _res, next) => {
     })
 
     const { error } = schema.validate(req.body);
-    if (error) throw error;
-
-    next();
+    if (error) {
+        return res.status(422).json({ message: error.message});
+    } else {
+        next();
+    }
 }
 
 export default validateCategory;
