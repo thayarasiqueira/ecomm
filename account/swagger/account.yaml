@@ -35,7 +35,7 @@ paths:
                   $ref: "#/components/schemas/Account"
         '401':
           description: unauthorized
-  /api/accounts/{id}:
+  /api/admin/accounts/{id}:
     get:
       summary: Find account
       description: Find one specific account

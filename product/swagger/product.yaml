@@ -18,8 +18,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Category"
-        '404':
-          description: not found
   /api/admin/categories:
     post:
       summary: Add category
