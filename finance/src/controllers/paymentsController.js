@@ -5,9 +5,9 @@ class PaymentsController {
         const payment = {...req.body, status: 'CRIADO'}
         try {
           const {id, status} = await db.Payments.create(payment);
-          return res.status(201).json({id, status});
+          return res.status(201).set('Location', `/payments/${id}`).json({id, status});
         } catch (error) {
-          return res.status(500).json(error.message)
+          return res.status(500).json(error.message);
         }
       }
 }
