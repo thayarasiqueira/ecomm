@@ -4,7 +4,8 @@ const PaymentsController = require('../controllers/paymentsController.js')
 const router = Router();
 
 router
-    .post('/payments', PaymentsController.createPayment);
+    .get('/payments/:id', PaymentsController.findPaymentById)
+    .post('/payments', PaymentsController.createPayment)
 
 
 module.exports = router;
