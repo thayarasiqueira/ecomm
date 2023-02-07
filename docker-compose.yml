@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 services:
   product:
     build: ./product
@@ -10,6 +10,8 @@ services:
 
   mongo:
     image: mongo
+    volumes:
+      - db-mongo-ecomm:/data/db
     container_name: mongo-ecomm
     restart: always
     ports:
@@ -17,3 +19,18 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: secret
+
+  mysql:
+    image: mysql
+    volumes:
+      - db-mysql-ecomm:/data/db
+    container_name: mysql-ecomm
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+
+volumes:
+  db-mongo-ecomm:
+  db-mysql-ecomm:
