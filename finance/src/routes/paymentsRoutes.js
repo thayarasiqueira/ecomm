@@ -6,6 +6,7 @@ const router = Router();
 router
     .get('/payments/:id', PaymentsController.findPaymentById)
     .post('/payments', PaymentsController.createPayment)
+    .patch('/payments/:id', PaymentsController.updateStatus)
 
 
 module.exports = router;
