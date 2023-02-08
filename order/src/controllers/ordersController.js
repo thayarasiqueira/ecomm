@@ -28,11 +28,11 @@ class OrderController {
     static confirmOrder = (req, res) => {
         const { id } = req.params;
     
-        orders.findByIdAndUpdate(id, {$set: {status: 'PAGO'}}, { new: true}, (err, account) => {
+        orders.findByIdAndUpdate(id, {$set: {status: 'PAGO'}}, { new: true}, (err, order) => {
           if(!err) {
             res.status(200).send({message: 'Order successfully updated'})
           } else {
-            res.status(500).set('Location', `/admin/accounts/${account.id}`).send({message: err.message})
+            res.status(500).set('Location', `/admin/orders/${order.id}`).send({message: err.message})
           }
         })
       }
