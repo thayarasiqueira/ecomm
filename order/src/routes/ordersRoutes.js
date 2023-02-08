@@ -5,5 +5,7 @@ const router = express.Router();
 
 router
     .get('/admin/orders/:id', OrderController.findOrderById)
+    .post('/admin/orders', OrderController.createOrder)
+    .patch('/admin/orders/:id', OrderController.confirmOrder)
 
 export default router;
