@@ -27,10 +27,20 @@ class PaymentsController {
 
       static async updateStatus(req, res) {
         const { id } = req.params;
+        const { status, descricao } = req.body;
         try {
-          await db.Payments.update(req.body, { where: { id: Number(id) }});
-          const updatedPayment = await db.Payments.findOne( { where: { id: Number(id) }});
-          return res.status(200).json(updatedPayment);
+          if(status === 'CONFIRMADO') {
+            db.sequelize.transaction(async (t) => {
+              await db.Payments.update({status}, { where: { id: Number(id) }}, {transaction: t});
+              await db.Invoices.create({descricao, payment_id: id}, {transaction: t});
+              const updatedPayment = await db.Payments.findOne( { where: { id: Number(id) }});
+              return res.status(200).json(updatedPayment);
+            })
+          } else {
+            await db.Payments.update(req.body, { where: { id: Number(id) }});
+            const updatedPayment = await db.Payments.findOne( { where: { id: Number(id) }});
+            return res.status(200).json(updatedPayment);
+          }
         } catch (error) {
           return res.status(500).json(error.message);
         }
