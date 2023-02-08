@@ -4,7 +4,7 @@ const fetchAccount = async (id) => {
     return data;
 }
 
-const fetchPostPayment = async (payload, id) => {
+const fetchPayment = async (payload, id) => {
     const descricao = JSON.stringify(payload);
     const response = await fetch (`http://localhost:3003/payments/${id}`, {
         method: 'PATCH',
@@ -20,5 +20,5 @@ const fetchPostPayment = async (payload, id) => {
     console.log(content);
 }
 
-export { fetchAccount, fetchPostPayment };
+export { fetchAccount, fetchPayment };
 
