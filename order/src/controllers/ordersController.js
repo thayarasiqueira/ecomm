@@ -14,8 +14,8 @@ class OrderController {
     }
 
     static createOrder = (req, res) => {
-        const order = new orders(req.body);
-        const newOrder = {...order, status: 'REALIZADO'};
+        const order = {...req.body, status: 'REALIZADO', createdDate: Date()};
+        const newOrder = new orders(order);
         newOrder.save((err, order) => {
             if(err) {
                 res.status(500).send({message: err.message});

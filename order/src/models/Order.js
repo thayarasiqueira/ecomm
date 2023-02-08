@@ -18,7 +18,8 @@ const orderSchema = new mongoose.Schema(
         createdDate: {type: Date},
         cliente: {type: String, required: true},
         enderecoDeEntrega: {type: addressSchema, required: true},
-        itens: {type:Array, required: true}
+        itens: {type:Array, required: true},
+        status: {type: String, required: true}
     }
 )
 
