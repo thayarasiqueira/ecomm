@@ -1,4 +1,5 @@
 import orders from '../models/Order.js';
+import {fetchAccount, fetchPostPayment} from '../utils/fetchAPIs.js';
 
 class OrderController {
     
@@ -25,17 +26,30 @@ class OrderController {
         })
     }
 
-    static confirmOrder = (req, res) => {
+    static confirmOrder = async (req, res) => {
+
         const { id } = req.params;
-    
+        const { idPayment }  = req.body;
+
         orders.findByIdAndUpdate(id, {$set: {status: 'PAGO'}}, { new: true}, (err, order) => {
-          if(!err) {
-            res.status(200).send({message: 'Order successfully updated'})
-          } else {
-            res.status(500).set('Location', `/admin/orders/${order.id}`).send({message: err.message})
-          }
+            if(!err) {
+                res.status(200).send({message: 'Order successfully updated'})
+            } else {
+                res.status(500).set('Location', `/admin/orders/${order.id}`).send({message: err.message})
+            }
         })
-      }
+
+        orders.findById(id, async (err, order) => {
+            if(err) {
+                res.status(500).send({message: err.message})
+              } else {
+                  const { nome, cpf } = await fetchAccount(order.clienteId);
+                  const payload = {nome, cpf, order: order.enderecoDeEntrega, itens: order.itens};
+                  await fetchPostPayment(payload, idPayment)
+              }
+        });
+    }
 }
+
 
 export default OrderController;
