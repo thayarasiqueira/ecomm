@@ -9,7 +9,7 @@ services:
     container_name: ecomm-account
 
   mongo:
-    image: mongo
+    image: mongo:5.0
     container_name: mongo-ecomm
     restart: always
     ports:
