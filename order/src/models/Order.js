@@ -16,7 +16,7 @@ const addressSchema = new mongoose.Schema(
 const orderSchema = new mongoose.Schema(
     {   
         createdDate: {type: Date},
-        cliente: {type: String, required: true},
+        clienteId: {type: mongoose.Types.ObjectId, required: true},
         enderecoDeEntrega: {type: addressSchema, required: true},
         itens: {type:Array, required: true},
         status: {type: String, required: true}
