@@ -11,7 +11,7 @@ const addressSchema = new mongoose.Schema(
         cidade: {type: String, required: true},
         uf: {type: String, required: true},
     }
-)
+);
 
 const accountSchema = new mongoose.Schema(
     {
@@ -23,7 +23,7 @@ const accountSchema = new mongoose.Schema(
         telefone:{type: String},
         endereco: { type: addressSchema, required: true},
     }
-)
+);
 
 const accounts = mongoose.model('accounts', accountSchema);
 

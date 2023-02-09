@@ -6,6 +6,6 @@ const routes = (app) => {
       express.json(),
       ordersRoutes
   )
-}
+};
 
 export default routes;

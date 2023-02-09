@@ -14,6 +14,6 @@ router
     .delete('/admin/accounts/:id', AccountController.deleteAccount)
 
     .use('/api-docs', swaggerUi.serve)
-    .get('/api-docs', swaggerUi.setup(swaggerDocument));
+    .get('/api-docs', swaggerUi.setup(swaggerDocument))
 
 export default router;

@@ -35,9 +35,9 @@ class AccountController {
     
         accounts.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, account) => {
           if(!err) {
-            res.status(200).send({message: 'Account successfully updated'})
+            res.status(200).send({message: 'Account successfully updated'});
           } else {
-            res.status(500).set('Location', `/admin/accounts/${account.id}`).send({message: err.message})
+            res.status(500).set('Location', `/admin/accounts/${account.id}`).send({message: err.message});
           }
         })
       }
@@ -47,9 +47,9 @@ class AccountController {
     
         accounts.findByIdAndDelete(id, (err) => {
           if(!err){
-            res.status(204).send({message: 'Account successfully deleted'})
+            res.status(204).send({message: 'Account successfully deleted'});
           } else {
-            res.status(500).send({message: err.message})
+            res.status(500).send({message: err.message});
           }
         })
       }

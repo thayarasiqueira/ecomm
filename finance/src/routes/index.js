@@ -6,6 +6,6 @@ const routes = (app) => {
       express.json(),
       payments
       )
-}
+};
 
 module.exports = routes;
