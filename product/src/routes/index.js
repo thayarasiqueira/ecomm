@@ -11,7 +11,7 @@ const routes = (app) => {
       express.json(),
       categories,
       products
-      )
-}
+      );
+};
 
 export default routes;

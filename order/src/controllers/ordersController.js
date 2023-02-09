@@ -1,5 +1,5 @@
 import orders from '../models/Order.js';
-import {fetchAccount, fetchPostPayment} from '../utils/fetchAPIs.js';
+import {fetchAccount, fetchPayment} from '../utils/fetchAPIs.js';
 
 class OrderController {
     
@@ -43,9 +43,9 @@ class OrderController {
             if(err) {
                 res.status(500).send({message: err.message})
               } else {
-                  const { nome, cpf } = await fetchAccount(order.clienteId);
-                  const payload = {nome, cpf, order: order.enderecoDeEntrega, itens: order.itens};
-                  await fetchPostPayment(payload, idPayment)
+                  const { nome, cpf, endereco } = await fetchAccount(order.clienteId);
+                  const payload = {nome, cpf, endereco, itens: order.itens};
+                  await fetchPayment(payload, idPayment)
               }
         });
     }

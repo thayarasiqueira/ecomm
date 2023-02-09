@@ -7,7 +7,7 @@ const categorySchema = new mongoose.Schema(
         nome: {type: String, required: true},
         categoria_id: {type: String, required: true},
     }
-)
+);
 
 const productSchema = new mongoose.Schema(
     {
