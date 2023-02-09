@@ -11,7 +11,7 @@ const addressSchema = new mongoose.Schema(
         cidade: {type: String, required: true},
         uf: {type: String, required: true},
     }
-)
+);
 
 const orderSchema = new mongoose.Schema(
     {   
@@ -21,7 +21,7 @@ const orderSchema = new mongoose.Schema(
         itens: {type:Array, required: true},
         status: {type: String, required: true}
     }
-)
+);
 
 const orders = mongoose.model('orders', orderSchema);
 

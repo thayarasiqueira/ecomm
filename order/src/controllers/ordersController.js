@@ -33,15 +33,15 @@ class OrderController {
 
         orders.findByIdAndUpdate(id, {$set: {status: 'PAGO'}}, { new: true}, (err, order) => {
             if(!err) {
-                res.status(200).send({message: 'Order successfully updated'})
+                res.status(200).send({message: 'Order successfully updated'});
             } else {
-                res.status(500).set('Location', `/admin/orders/${order.id}`).send({message: err.message})
+                res.status(500).set('Location', `/admin/orders/${order.id}`).send({message: err.message});
             }
         })
 
         orders.findById(id, async (err, order) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: err.message});
               } else {
                   const { nome, cpf, endereco } = await fetchAccount(order.clienteId);
                   const payload = {nome, cpf, endereco, itens: order.itens};
