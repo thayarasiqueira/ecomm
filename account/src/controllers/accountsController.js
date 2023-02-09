@@ -20,7 +20,7 @@ class AccountController {
     }
 
     static createAccount = (req, res) => {
-        const account = new accounts(req.body);
+        const account = new accounts({...req.body, createdDate: Date()});
         account.save((err, account) => {
             if(err) {
                 res.status(500).send({message: err.message});
