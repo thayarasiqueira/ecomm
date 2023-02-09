@@ -6,7 +6,7 @@ const fetchAccount = async (id) => {
 
 const fetchPayment = async (payload, id) => {
     const descricao = JSON.stringify(payload);
-    const response = await fetch (`http://localhost:3003/payments/${id}`, {
+    const response = await fetch (`http://localhost:3003/admin/payments/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
             status: 'CONFIRMADO',

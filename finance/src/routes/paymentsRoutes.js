@@ -5,9 +5,9 @@ const validateStatus = require('../validations/paymentsValidation.js');
 const router = Router();
 
 router
-    .get('/payments/:id', PaymentsController.findPaymentById)
-    .post('/payments', PaymentsController.createPayment)
-    .patch('/payments/:id', validateStatus, PaymentsController.updateStatus)
+    .get('/admin/payments/:id', PaymentsController.findPaymentById)
+    .post('/admin/payments', PaymentsController.createPayment)
+    .patch('/admin/payments/:id', validateStatus, PaymentsController.updateStatus)
 
 
 module.exports = router;
