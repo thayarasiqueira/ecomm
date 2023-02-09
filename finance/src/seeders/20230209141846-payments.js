@@ -7,6 +7,7 @@ module.exports = {
         cartao: '4551688656769426',
         expiracao_cartao: '2025-01',
         cvv: '280',
+        status: 'CRIADO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -16,6 +17,7 @@ module.exports = {
         cartao: '4924015461030143',
         expiracao_cartao: '2023-10',
         cvv: '476',
+        status: 'CRIADO',
         createdAt: new Date(),
         updatedAt: new Date()
       }
