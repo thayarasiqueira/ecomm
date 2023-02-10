@@ -2,7 +2,7 @@ import express from 'express';
 import AccountController from '../controllers/accountsController.js';
 import validateAccount from '../validations/accountsValidation.js';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../../swagger/account.json' assert { type: "json" };
+import swaggerDocument from '../../swagger/swagger_output.json' assert { type: "json" };
 
 const router = express.Router();
 

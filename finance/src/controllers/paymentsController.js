@@ -26,13 +26,13 @@ class PaymentsController {
               href: `https://http://localhost:3003/admin/payments/${id}`
             },
             {     
-              rel: "related",
+              rel: "confirmation",
               method: "PATCH",
               status: "CONFIRMADO",
               href: `https://http://localhost:3003/admin/payments/${id}`
             },
             {     
-              rel: "related",
+              rel: "cancellation",
               method: "PATCH",
               status: "CANCELADO",
               href: `https://http://localhost:3003/admin/payments/${id}`
