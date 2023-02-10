@@ -8,10 +8,7 @@ const validateStatus = async (req, res, next) => {
           id: Number(id)
         }
       })
-    if (status === 'CONFIRMADO') {
-        return res.status(422).json({message: 'Status change denied!'});
-      }
-    if (status === 'CANCELADO') {
+    if (status === 'CONFIRMADO' || status === 'CANCELADO') {
         return res.status(422).json({message: 'Status change denied!'});
     }
       next();
