@@ -19,7 +19,26 @@ class PaymentsController {
         const payment = {...req.body, status: 'CRIADO'};
         try {
           const {id, status} = await db.Payments.create(payment);
-          return res.status(201).set('Location', `/payments/${id}`).json({id, status});
+          const links =  [
+            {     
+              rel: "self",
+              method: "GET",
+              href: `https://http://localhost:3003/admin/payments/${id}`
+            },
+            {     
+              rel: "related",
+              method: "PATCH",
+              status: "CONFIRMADO",
+              href: `https://http://localhost:3003/admin/payments/${id}`
+            },
+            {     
+              rel: "related",
+              method: "PATCH",
+              status: "CANCELADO",
+              href: `https://http://localhost:3003/admin/payments/${id}`
+            }
+          ];
+          return res.status(201).set('Location', `/payments/${id}`).json({id, status, links});
         } catch (error) {
           return res.status(500).json(error.message);
         }
@@ -28,18 +47,25 @@ class PaymentsController {
       static async updateStatus(req, res) {
         const { id } = req.params;
         const { status, descricao } = req.body;
+        const links =  [
+          {     
+            rel: "self",
+            method: "GET",
+            href: `https://http://localhost:3003/admin/payments/${id}`
+          }
+        ];
         try {
           if(status === 'CONFIRMADO') {
             db.sequelize.transaction(async (t) => {
               await db.Payments.update({status}, { where: { id: Number(id) }}, {transaction: t});
               await db.Invoices.create({descricao, payment_id: id}, {transaction: t});
               const updatedPayment = await db.Payments.findOne( { where: { id: Number(id) }});
-              return res.status(200).json(updatedPayment);
+              return res.status(200).json({...updatedPayment, links});
             })
           } else {
             await db.Payments.update(req.body, { where: { id: Number(id) }});
             const updatedPayment = await db.Payments.findOne( { where: { id: Number(id) }});
-            return res.status(200).json(updatedPayment);
+            return res.status(200).json({...updatedPayment, links});
           }
         } catch (error) {
           return res.status(500).json(error.message);
