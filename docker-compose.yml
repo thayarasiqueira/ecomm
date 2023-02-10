@@ -40,6 +40,7 @@ services:
     container_name: ecomm-order
     depends_on:
       - mongodb
+
   product:
     build: ./product
     container_name: ecomm-product
