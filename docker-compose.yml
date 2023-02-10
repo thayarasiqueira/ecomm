@@ -22,21 +22,10 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: secret
-  product:
-    build: ./product
-    container_name: ecomm-product
-    depends_on:
-      - mongodb
 
   account:
     build: ./account
     container_name: ecomm-account
-    depends_on:
-      - mongodb
-
-  order:
-    build: ./order
-    container_name: ecomm-order
     depends_on:
       - mongodb
 
@@ -46,29 +35,16 @@ services:
     depends_on:
       - mysql
 
-  product:
-    build: ./product
-    container_name: ecomm-product
-    depends_on:
-      - mongodb
-
-  account:
-    build: ./account
-    container_name: ecomm-account
-    depends_on:
-      - mongodb
-
   order:
     build: ./order
     container_name: ecomm-order
     depends_on:
       - mongodb
-
-  finance:
-    build: ./finance
-    container_name: ecomm-finance
+  product:
+    build: ./product
+    container_name: ecomm-product
     depends_on:
-      - mysql
+      - mongodb
 
 volumes:
   db-mongo-ecomm:
