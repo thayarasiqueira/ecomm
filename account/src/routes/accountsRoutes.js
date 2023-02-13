@@ -8,7 +8,7 @@ const router = express.Router();
 
 router
     .get('/admin/accounts', AccountController.findAccounts)
-    .get('/admin/accounts/:id', AccountController.findAccountById)
+    .get('/accounts/:id', AccountController.findAccountById)
     .post('/admin/accounts', validateAccount, AccountController.createAccount)
     .put('/admin/accounts/:id', validateAccount, AccountController.updateAccount)
     .delete('/admin/accounts/:id', AccountController.deleteAccount)

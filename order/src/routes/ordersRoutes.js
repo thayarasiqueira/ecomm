@@ -4,7 +4,7 @@ import OrderController from '../controllers/ordersController.js';
 const router = express.Router();
 
 router
-    .get('/admin/orders/:id', OrderController.findOrderById)
+    .get('/orders/:id', OrderController.findOrderById)
     .post('/admin/orders', OrderController.createOrder)
     .patch('/admin/orders/:id', OrderController.confirmOrder)
 
