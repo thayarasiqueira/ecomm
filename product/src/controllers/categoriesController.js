@@ -3,8 +3,12 @@ import categories from '../models/Category.js';
 class CategoryController {
 
     static findCategories = (_req, res) => {
-        categories.find((_err, categories) => {
-            res.status(200).json(categories);
+        categories.find((err, categories) => {
+            if(err) {
+              res.status(500).send({message: err.message});
+            } else {
+              res.status(200).json(categories);
+            }
         })
     }
 

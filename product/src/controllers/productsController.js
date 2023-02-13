@@ -4,7 +4,11 @@ class ProductController {
 
     static findProducts = (_req, res) => {
         products.find((_err, products) => {
-            res.status(200).json(products);
+            if(err) {
+              res.status(500).send({message: err.message});
+            } else {
+              res.status(200).json(products);
+            }
         })
     }
 

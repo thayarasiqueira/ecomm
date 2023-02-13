@@ -3,8 +3,12 @@ import accounts from '../models/Account.js';
 class AccountController {
     
     static findAccounts = (_req, res) => {
-        accounts.find((_err, accounts) => {
+        accounts.find((err, accounts) => {
+          if(err) {
+            res.status(500).send({message: err.message});
+          } else {
             res.status(200).json(accounts);
+          }
         })
     }
 
