@@ -3,7 +3,7 @@ import products from '../models/Product.js';
 class ProductController {
 
     static findProducts = (_req, res) => {
-        products.find((_err, products) => {
+        products.find((err, products) => {
             if(err) {
               res.status(500).send({message: err.message});
             } else {
