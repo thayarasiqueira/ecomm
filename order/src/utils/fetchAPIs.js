@@ -1,12 +1,14 @@
+import fetch from "node-fetch";
+
 const fetchAccount = async (id) => {
-    const response = await fetch (`http://localhost:3002/admin/accounts/${id}`);
+    const response = await fetch (`http://account:3002/accounts/${id}`);
     const data = await response.json();
     return data;
 }
 
 const fetchPayment = async (payload, id) => {
     const descricao = JSON.stringify(payload);
-    const response = await fetch (`http://localhost:3003/admin/payments/${id}`, {
+    const response = await fetch (`http://finance:3003/admin/payments/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({
             status: 'CONFIRMADO',
