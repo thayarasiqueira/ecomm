@@ -6,7 +6,7 @@ const router = Router();
 
 router
     .get('/payments/:id', PaymentsController.findPaymentById)
-    .post('/admin/payments', PaymentsController.createPayment)
+    .post('/payments', PaymentsController.createPayment)
     .patch('/admin/payments/:id', validateStatus, PaymentsController.updateStatus)
 
 
