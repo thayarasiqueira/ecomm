@@ -11,9 +11,9 @@
     "http"
   ],
   "paths": {
-    "express.json()/admin/payments/{id}": {
+    "/admin/payments/{id}": {
       "get": {
-        "description": "",
+        "description": "Find an account by Id",
         "parameters": [
           {
             "name": "id",
@@ -32,7 +32,7 @@
         }
       },
       "patch": {
-        "description": "",
+        "description": "Update status in payment",
         "parameters": [
           {
             "name": "id",
@@ -47,10 +47,10 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "descricao": {
-                  "example": "any"
+                  "type": "string"
                 }
               }
             }
@@ -69,10 +69,36 @@
         }
       }
     },
-    "express.json()/admin/payments": {
+    "/admin/payments": {
       "post": {
-        "description": "",
-        "parameters": [],
+        "description": "Insert new payment into",
+        "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "valor": {
+                    "type": "string"
+                  },
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cartao": {
+                    "type": "string"
+                  },
+                  "expiracao_cartao": {
+                    "type": "string"
+                  },
+                  "cvv": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+        ],
         "responses": {
           "201": {
             "description": "Created"
