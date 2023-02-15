@@ -11,9 +11,9 @@
     "http"
   ],
   "paths": {
-    "/admin/payments/{id}": {
+    "/payments/{id}": {
       "get": {
-        "description": "Find an account by Id",
+        "description": "Find a payment by Id",
         "parameters": [
           {
             "name": "id",
@@ -30,9 +30,11 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/admin/payments/{id}": {
       "patch": {
-        "description": "Update status in payment",
+        "description": "Update status in payment. If you wish to confirm payment, also provide description to generate invoice",
         "parameters": [
           {
             "name": "id",
@@ -43,6 +45,7 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {

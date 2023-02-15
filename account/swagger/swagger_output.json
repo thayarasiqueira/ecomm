@@ -1,60 +1,63 @@
 {
-  "openapi": "3.0.3",
   "info": {
     "title": "Ecomm Accounts",
     "description": "This API is responsible for the accounts' requests and responses in the e-commerce.",
     "version": "0.0.1"
   },
   "paths": {
-    "/api/accounts": {
+    "/api/admin/accounts": {
       "get": {
         "summary": "List accounts",
         "description": "List all accounts",
         "responses": {
           "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Account"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/accounts": {
-      "post": {
-        "summary": "Add account",
-        "description": "Add new account",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Account"
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Account"
               }
             }
           }
         },
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ]
+      },
+      "post": {
+        "summary": "Add account",
+        "description": "Add new account",
         "responses": {
           "201": {
-            "description": "created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Account"
-                }
-              }
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Account"
             }
           },
           "401": {
-            "description": "unauthorized"
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "/api/accounts/{id}": {
@@ -65,32 +68,26 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ID of account that needs to be fetched",
+            "description": "Id of account that needs to be fetched",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "format": "uuid",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Account"
-                }
-              }
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Account"
             }
           },
           "400": {
-            "description": "invalid ID supplied"
-          },
-          "404": {
-            "description": "not found"
+            "description": "Invalid ID supplied"
           }
-        }
+        },
+        "produces": [
+          "application/json"
+        ]
       }
     },
     "/api/admin/accounts/{id}": {
@@ -101,41 +98,43 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ID of account that needs to be updated",
+            "description": "Id of account that needs to be updated",
+            "required": true,
+            "format": "uuid",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "$ref": "#/definitions/Account"
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Account"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Account"
-                }
-              }
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Account"
             }
           },
           "400": {
-            "description": "invalid ID supplied"
+            "description": "Invalid Id supplied"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
-        }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
       },
       "delete": {
         "summary": "Delete account",
@@ -144,86 +143,84 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ID of account that needs to be deleted",
+            "description": "Id of account that needs to be deleted",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "format": "uuid",
+            "type": "string"
           }
         ],
         "responses": {
           "204": {
-            "description": "no content"
+            "description": "No content"
           },
           "400": {
-            "description": "invalid ID supplied"
+            "description": "Invalid ID supplied"
           },
           "401": {
-            "description": "unauthorized"
+            "description": "Unauthorized"
           }
         }
       }
     }
   },
-  "components": {
-    "schemas": {
-      "Account": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nome": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "senha": {
-            "type": "string",
-            "format": "password"
-          },
-          "createdDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "cpf": {
-            "type": "string"
-          },
-          "telefone": {
-            "type": "string"
-          },
-          "endereco": {
-            "type": "object",
-            "properties": {
-              "logradouro": {
-                "type": "string"
-              },
-              "numero": {
-                "type": "string"
-              },
-              "complemento": {
-                "type": "string"
-              },
-              "bairro": {
-                "type": "string"
-              },
-              "cep": {
-                "type": "string"
-              },
-              "cidade": {
-                "type": "string"
-              },
-              "uf": {
-                "type": "string"
-              }
+  "swagger": "2.0",
+  "definitions": {
+    "Account": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "senha": {
+          "type": "string",
+          "format": "password"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cpf": {
+          "type": "string"
+        },
+        "telefone": {
+          "type": "string"
+        },
+        "endereco": {
+          "type": "object",
+          "properties": {
+            "logradouro": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "string"
+            },
+            "complemento": {
+              "type": "string"
+            },
+            "bairro": {
+              "type": "string"
+            },
+            "cep": {
+              "type": "string"
+            },
+            "cidade": {
+              "type": "string"
+            },
+            "uf": {
+              "type": "string"
             }
           }
         }
       }
     }
-  }
+  },
+  "x-components": {}
 }
