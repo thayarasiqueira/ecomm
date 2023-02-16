@@ -55,7 +55,14 @@ class PaymentsController {
           }
         ];
         try {
-          if(status === 'CONFIRMADO') {
+          const {status:statusPayment} = await db.Payments.findOne( { 
+            where: { 
+              id: Number(id)
+            }
+          })
+          if (statusPayment !== 'CRIADO') {
+            return res.status(422).json({message: 'Status change denied!'});
+          } else if(status === 'CONFIRMADO') {
             db.sequelize.transaction(async (t) => {
               await db.Payments.update({status}, { where: { id: Number(id) }}, {transaction: t});
               await db.Invoices.create({descricao, payment_id: id}, {transaction: t});

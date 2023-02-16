@@ -72,7 +72,7 @@
         }
       }
     },
-    "/admin/payments": {
+    "/payments": {
       "post": {
         "description": "Insert new payment into",
         "parameters": [
