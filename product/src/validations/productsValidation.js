@@ -5,7 +5,7 @@ const validateProduct = (req, _res, next) => {
     const nestedSchema = Joi.object().keys({
         nome: Joi.string(),
         categoria_id: Joi.string()
-    })
+    });
     const schema = Joi.object({
         _id: Joi.string(),
         nome: Joi.string()
@@ -22,7 +22,7 @@ const validateProduct = (req, _res, next) => {
             .max(1000),
         categoria: nestedSchema
             .required()
-    })
+    });
 
     const { error } = schema.validate(req.body);
     if (error) {
@@ -30,15 +30,15 @@ const validateProduct = (req, _res, next) => {
     } else {
         next();
     }
-}
+};
 
 const validateCategoryId = (req, res, next) => {
     const { categoria: {categoria_id}} = req.body;
     categories.findById(categoria_id, (err, _category) => {
         if(err) {
-            return res.status(500).send({ message: err.message })
+            return res.status(500).send({ message: err.message });
           }
-    })
+    });
 
     next();
 }

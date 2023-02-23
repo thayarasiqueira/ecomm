@@ -19,7 +19,7 @@ const validateAccount = (req, res, next) => {
         uf: Joi.string()
             .pattern(new RegExp(/(A[CLMP]|BA|CE|DF|ES|GO|M[AGST]|P[ABEIR]|R[JNORS]|S[CEP]|TO)/))
             .required(),
-    })
+    });
 
     const schema = Joi.object().keys({
         _id: Joi.string(),
@@ -40,7 +40,7 @@ const validateAccount = (req, res, next) => {
             .max(13)
             .pattern(new RegExp(/^[0-9]*$/)),
         endereco: addressSchema,
-    })
+    });
 
     const { error } = schema.validate(req.body);
     if (error) {
@@ -48,6 +48,6 @@ const validateAccount = (req, res, next) => {
     } else {
         next();
     }
-}
+};
 
 export default validateAccount;

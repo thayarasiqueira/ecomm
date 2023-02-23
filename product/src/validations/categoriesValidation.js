@@ -8,7 +8,7 @@ const validateCategory = (req, res, next) => {
             .pattern(new RegExp(/^[^0-9]/))
             .required(),
         status: Joi.string()
-    })
+    });
 
     const { error } = schema.validate(req.body);
     if (error) {
@@ -16,6 +16,6 @@ const validateCategory = (req, res, next) => {
     } else {
         next();
     }
-}
+};
 
 export default validateCategory;

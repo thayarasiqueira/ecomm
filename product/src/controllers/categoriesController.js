@@ -3,8 +3,12 @@ import categories from '../models/Category.js';
 class CategoryController {
 
     static findCategories = (_req, res) => {
-        categories.find((_err, categories) => {
-            res.status(200).json(categories)
+        categories.find((err, categories) => {
+            if(err) {
+              res.status(500).send({message: err.message});
+            } else {
+              res.status(200).json(categories);
+            }
         })
     }
 
@@ -12,9 +16,9 @@ class CategoryController {
         const { id } = req.params;
         categories.findById(id, (err, category) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: err.message});
               } else {
-                res.status(201).json(category)
+                res.status(201).json(category);
               }
         })
     }
@@ -23,9 +27,9 @@ class CategoryController {
         const category = new categories(req.body);
         category.save((err, category) => {
             if(err) {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: err.message});
               } else {
-                res.status(201).set('Location', `/admin/categories/${category.id}`).json(category)
+                res.status(201).set('Location', `/admin/categories/${category.id}`).json(category);
               }
         })
     }
@@ -35,9 +39,9 @@ class CategoryController {
     
         categories.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, category) => {
           if(!err) {
-            res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'})
+            res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'});
           } else {
-            res.status(500).send({message: err.message})
+            res.status(500).send({message: err.message});
           }
         })
       }
@@ -47,9 +51,9 @@ class CategoryController {
     
         categories.findByIdAndUpdate(id, {$set: req.body}, { new: true}, (err, category) => {
           if(!err) {
-            res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'})
+            res.status(200).set('Location', `/admin/categories/${category.id}`).send({message: 'Category successfully updated'});
           } else {
-            res.status(500).send({message: err.message})
+            res.status(500).send({message: err.message});
           }
         })
       }
@@ -59,9 +63,9 @@ class CategoryController {
     
         categories.findByIdAndDelete(id, (err) => {
           if(!err){
-            res.status(204).send({message: 'Category successfully deleted'})
+            res.status(204).send({message: 'Category successfully deleted'});
           } else {
-            res.status(500).send({message: err.message})
+            res.status(500).send({message: err.message});
           }
         })
       }

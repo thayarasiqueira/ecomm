@@ -3,7 +3,7 @@ use("ecomm-order");
 db.orders.insertMany([
   {
     "createdDate": new ISODate(),
-    "cliente": "Ada Lovelace",
+    "clienteId": "63e251a0cf56b0d82cb740bb",
     "enderecoDeEntrega": {
         "logradouro": "Rua Afonso Cavalcante de Oliveira",
         "numero": "582",
@@ -32,11 +32,12 @@ db.orders.insertMany([
             "preco": NumberDecimal(3100.00),
             "valorDesconto":  NumberDecimal(100.00),
         }
-    ]
+    ],
+    "status": "REALIZADO"
   },
     {
     "createdDate": new ISODate(),
-    "cliente": "Marie Curie",
+    "clienteId": "63e251a0cf56b0d82cb740bc",
     "enderecoDeEntrega": {
         "logradouro": "Avenida Ceará",
         "numero": "2478",
@@ -56,6 +57,7 @@ db.orders.insertMany([
             "preco": NumberDecimal(300.28),
             "valorDesconto": NumberDecimal(50.00),
         }
-    ]
+    ],
+    "status": "REALIZADO"
   },
 ])
