@@ -18,7 +18,7 @@ class CategoryController {
             if(err) {
                 res.status(500).send({message: err.message});
               } else {
-                res.status(201).json(category);
+                res.status(200).json(category);
               }
         })
     }
