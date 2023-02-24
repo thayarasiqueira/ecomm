@@ -1,21 +1,20 @@
-'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Invoices = sequelize.define('Invoices', {
-      descricao: {
-        allowNull: false,
-        type: DataTypes.TEXT,
-           get: function () {
-                return JSON.parse(this.getDataValue('descricao'));
-            },
-            set: function (value) {
-                this.setDataValue('descricao', JSON.stringify(value));
-            },
+    descricao: {
+      allowNull: false,
+      type: DataTypes.TEXT,
+      get() {
+        return JSON.parse(this.getDataValue('descricao'));
       },
-  })
-  Invoices.associate = function(models) {
+      set(value) {
+        this.setDataValue('descricao', JSON.stringify(value));
+      },
+    },
+  });
+  Invoices.associate = function (models) {
     Invoices.belongsTo(models.Payments, {
-      foreignKey: 'payment_id'
-    })
+      foreignKey: 'payment_id',
+    });
   };
   return Invoices;
 };
