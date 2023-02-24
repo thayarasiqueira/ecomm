@@ -8,7 +8,7 @@
         "start": "node index.js",
         "dev": "nodemon index.js",
         "swagger-autogen": "node swagger.js",
-        "test": "jest"
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
     },
     "author": "Wanderson Macêdo",
     "license": "MIT",
