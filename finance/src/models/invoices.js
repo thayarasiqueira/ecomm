@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
-  Invoices.associate = function (models) {
+  Invoices.associate = function setRelation(models) {
     Invoices.belongsTo(models.Payments, {
       foreignKey: 'payment_id',
     });
