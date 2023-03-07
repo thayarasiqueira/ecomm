@@ -6,10 +6,9 @@ class OrderController {
     const { id } = req.params;
     Order.findById(id, (err, order) => {
       if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(200).json(order);
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(200).json(order);
     });
   };
 
@@ -18,10 +17,9 @@ class OrderController {
     const newOrder = new Order(order);
     newOrder.save((err, createdOrder) => {
       if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(201).set('Location', `/admin/Orders/${order.id}`).json(createdOrder);
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(201).set('Location', `/admin/Orders/${order.id}`).json(createdOrder);
     });
   };
 
@@ -30,10 +28,10 @@ class OrderController {
     const { idPayment } = req.body;
 
     Order.findByIdAndUpdate(id, { $set: { status: 'PAGO' } }, { new: true }, (err, order) => {
-      if (!err) {
-        res.status(200).send({ message: 'Order successfully updated' });
+      if (err) {
+        res.status(500).send({ message: err.message });
       } else {
-        res.status(500).set('Location', `/admin/Orders/${order.id}`).send({ message: err.message });
+        res.status(200).set('Location', `/admin/Orders/${order.id}`).send({ message: 'Order successfully updated' });
       }
     });
 

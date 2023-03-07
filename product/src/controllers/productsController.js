@@ -14,10 +14,9 @@ class ProductController {
     const { id } = req.params;
     Product.findById(id, (err, product) => {
       if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(200).json(product);
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(200).json(product);
     });
   };
 
@@ -25,10 +24,9 @@ class ProductController {
     const newProduct = new Product(req.body);
     newProduct.save((err, product) => {
       if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(201).set('Location', `/admin/Products/${product.id}`).json(product);
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(201).set('Location', `/admin/Products/${product.id}`).json(product);
     });
   };
 
@@ -36,11 +34,10 @@ class ProductController {
     const { id } = req.params;
 
     Product.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, product) => {
-      if (!err) {
-        res.status(200).set('Location', `/admin/Products/${product.id}`).send({ message: 'Product successfully updated' });
-      } else {
-        res.status(500).send({ message: err.message });
+      if (err) {
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(200).set('Location', `/admin/Products/${product.id}`).send({ message: 'Product successfully updated' });
     });
   };
 
@@ -48,11 +45,10 @@ class ProductController {
     const { id } = req.params;
 
     Product.findByIdAndDelete(id, (err) => {
-      if (!err) {
-        res.status(204).send({ message: 'Product successfully deleted' });
-      } else {
-        res.status(500).send({ message: err.message });
+      if (err) {
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(204).send({ message: 'Product successfully deleted' });
     });
   };
 }

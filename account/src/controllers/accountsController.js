@@ -14,10 +14,9 @@ class AccountController {
     const { id } = req.params;
     Account.findById(id, (err, account) => {
       if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(200).json(account);
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(200).json(account);
     });
   };
 
@@ -25,10 +24,9 @@ class AccountController {
     const account = new Account({ ...req.body, createdDate: Date() });
     account.save((err, newAccount) => {
       if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(201).set('Location', `/admin/Accounts/${account.id}`).json(newAccount);
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(201).set('Location', `/admin/Accounts/${account.id}`).json(newAccount);
     });
   };
 
@@ -36,11 +34,10 @@ class AccountController {
     const { id } = req.params;
 
     Account.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, account) => {
-      if (!err) {
-        res.status(200).send({ message: 'Account successfully updated' });
-      } else {
-        res.status(500).set('Location', `/admin/Accounts/${account.id}`).send({ message: err.message });
+      if (err) {
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(200).set('Location', `/admin/Accounts/${account.id}`).send({ message: 'Account successfully updated' });
     });
   };
 
@@ -48,11 +45,10 @@ class AccountController {
     const { id } = req.params;
 
     Account.findByIdAndDelete(id, (err) => {
-      if (!err) {
-        res.status(204).send({ message: 'Account successfully deleted' });
-      } else {
-        res.status(500).send({ message: err.message });
+      if (err) {
+        return res.status(500).send({ message: err.message });
       }
+      return res.status(204).send({ message: 'Account successfully deleted' });
     });
   };
 }
