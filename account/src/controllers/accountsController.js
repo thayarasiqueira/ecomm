@@ -1,4 +1,5 @@
 import Account from '../models/Account.js';
+import hashPassword from '../utils/hash.js';
 
 class AccountController {
   static findAccounts = (_req, res) => {
@@ -21,6 +22,8 @@ class AccountController {
   };
 
   static createAccount = (req, res) => {
+    const { senha } = req.body;
+    req.body.senha = hashPassword(senha);
     const account = new Account({ ...req.body, createdDate: Date() });
     account.save((err, newAccount) => {
       if (err) {
