@@ -1,10 +1,10 @@
-import Orders from '../models/Order.js';
+import Order from '../models/Order.js';
 import { fetchAccount, fetchPayment } from '../utils/fetchAPIs.js';
 
 class OrderController {
   static findOrderById = (req, res) => {
     const { id } = req.params;
-    Orders.findById(id, (err, order) => {
+    Order.findById(id, (err, order) => {
       if (err) {
         res.status(500).send({ message: err.message });
       } else {
@@ -15,7 +15,7 @@ class OrderController {
 
   static createOrder = (req, res) => {
     const order = { ...req.body, status: 'REALIZADO', createdDate: Date() };
-    const newOrder = new Orders(order);
+    const newOrder = new Order(order);
     newOrder.save((err, createdOrder) => {
       if (err) {
         res.status(500).send({ message: err.message });
@@ -29,7 +29,7 @@ class OrderController {
     const { id } = req.params;
     const { idPayment } = req.body;
 
-    Orders.findByIdAndUpdate(id, { $set: { status: 'PAGO' } }, { new: true }, (err, order) => {
+    Order.findByIdAndUpdate(id, { $set: { status: 'PAGO' } }, { new: true }, (err, order) => {
       if (!err) {
         res.status(200).send({ message: 'Order successfully updated' });
       } else {
@@ -37,7 +37,7 @@ class OrderController {
       }
     });
 
-    Orders.findById(id, async (err, order) => {
+    Order.findById(id, async (err, order) => {
       if (err) {
         res.status(500).send({ message: err.message });
       } else {

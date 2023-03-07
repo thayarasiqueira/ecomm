@@ -1,8 +1,8 @@
-import Categories from '../models/Category.js';
+import Category from '../models/Category.js';
 
 class CategoryController {
   static findCategories = (_req, res) => {
-    Categories.find((err, allCategories) => {
+    Category.find((err, allCategories) => {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
@@ -12,7 +12,7 @@ class CategoryController {
 
   static findCategoryById = (req, res) => {
     const { id } = req.params;
-    Categories.findById(id, (err, category) => {
+    Category.findById(id, (err, category) => {
       if (err) {
         res.status(500).send({ message: err.message });
       } else {
@@ -22,7 +22,7 @@ class CategoryController {
   };
 
   static createCategory = (req, res) => {
-    const category = new Categories(req.body);
+    const category = new Category(req.body);
     category.save((err, newCategory) => {
       if (err) {
         res.status(500).send({ message: err.message });
@@ -35,7 +35,7 @@ class CategoryController {
   static updateCategory = (req, res) => {
     const { id } = req.params;
 
-    Categories.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, category) => {
+    Category.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, category) => {
       if (!err) {
         res.status(200).set('Location', `/admin/Categories/${category.id}`).send({ message: 'Category successfully updated' });
       } else {
@@ -47,7 +47,7 @@ class CategoryController {
   static updateStatusCategory = (req, res) => {
     const { id } = req.params;
 
-    Categories.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, category) => {
+    Category.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, category) => {
       if (!err) {
         res.status(200).set('Location', `/admin/Categories/${category.id}`).send({ message: 'Category successfully updated' });
       } else {
@@ -59,7 +59,7 @@ class CategoryController {
   static deleteCategory = (req, res) => {
     const { id } = req.params;
 
-    Categories.findByIdAndDelete(id, (err) => {
+    Category.findByIdAndDelete(id, (err) => {
       if (!err) {
         res.status(204).send({ message: 'Category successfully deleted' });
       } else {

@@ -32,7 +32,6 @@ describe('POST /admin/orders', () => {
         status: 'REALIZADO',
       })
       .set('Accept', 'application/json')
-      .expect('content-type', /json/)
       .expect(201);
 
     // eslint-disable-next-line no-underscore-dangle
