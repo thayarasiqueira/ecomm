@@ -1,7 +1,6 @@
-import passport from 'passport';
-import jwt from 'jsonwebtoken';
-import { Strategy as BearerStrategy } from 'passport-http-bearer';
-import Payment from '../models/payments.js';
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const BearerStrategy = require('passport-http-bearer').Strategy;
 
 passport.use(
   new BearerStrategy(
@@ -16,4 +15,4 @@ passport.use(
   ),
 );
 
-export default BearerStrategy;
+module.exports = BearerStrategy;
