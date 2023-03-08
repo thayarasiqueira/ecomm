@@ -12,8 +12,7 @@ const app = express();
 app.use(express.json());
 app.use((err, _req, res, next) => {
   if (err) {
-    const { status } = err;
-    const { message } = err;
+    const { status, message } = err;
     res.status(status).json({ error: message });
   } else {
     res.status(500).json({ error: 'Internal Server Error' });

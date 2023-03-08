@@ -22,11 +22,9 @@ passport.use(
         return done(err);
       }
       if (account === null) {
-        console.log('entrou email');
         return done(createCustomError(400, 'Invalid email or password'));
       }
       if (!verifyPassword(senha, account.senha)) {
-        console.log('entrou senha');
         return done(createCustomError(400, 'Invalid email or password'));
       }
       done(null, account);
