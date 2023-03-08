@@ -1,5 +1,6 @@
 import Account from '../models/Account.js';
-import hashPassword from '../utils/hash.js';
+import { encrypt } from '../utils/hash.js';
+import generateToken from '../utils/generateToken.js';
 
 class AccountController {
   static findAccounts = (_req, res) => {
@@ -21,9 +22,15 @@ class AccountController {
     });
   };
 
+  static login = (req, res) => {
+    const { id } = req.user;
+    const token = generateToken(id);
+    res.status(204).set('Authorization', token).send();
+  };
+
   static createAccount = (req, res) => {
     const { senha } = req.body;
-    req.body.senha = hashPassword(senha);
+    req.body.senha = encrypt(senha);
     const account = new Account({ ...req.body, createdDate: Date() });
     account.save((err, newAccount) => {
       if (err) {

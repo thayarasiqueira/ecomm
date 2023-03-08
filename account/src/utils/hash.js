@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 
 const SALT = bcrypt.genSaltSync(12);
-const hashPassword = (password) => bcrypt.hashSync(password, SALT);
+const encrypt = (password) => bcrypt.hashSync(password, SALT);
+const decrypt = (password, hash) => bcrypt.compareSync(password, hash);
 
-export default hashPassword;
+export { encrypt, decrypt };
