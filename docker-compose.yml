@@ -23,6 +23,15 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
 
+  redis:
+    image: redis
+    volumes:
+    - redis_data:/data
+    container_name: redis-ecomm
+    restart: always
+    ports:
+    - 6379:6379
+
   account:
     build: ./account
     container_name: ecomm-account
@@ -32,6 +41,7 @@ services:
       - 3002:3002
     depends_on:
       - mongodb
+      - redis
 
   finance:
     build: ./finance
@@ -63,6 +73,8 @@ services:
     depends_on:
       - mongodb
 
+
 volumes:
   db-mongo-ecomm:
   db-mysql-ecomm:
+  redis_data:
