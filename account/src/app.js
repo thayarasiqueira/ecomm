@@ -2,7 +2,7 @@ import express from 'express';
 import db from './config/dbConnect.js';
 import routes from './routes/index.js';
 // eslint-disable-next-line no-unused-vars
-import LocalStrategy from './utils/localStrategy.js';
+import { LocalStrategy, BearerStrategy } from './middlewares/authStrategies.js';
 
 db.once('open', () => {
   console.log('Db successfully connected!');

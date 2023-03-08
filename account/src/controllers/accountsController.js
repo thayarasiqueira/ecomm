@@ -36,7 +36,7 @@ class AccountController {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
-      return res.status(201).set('Location', `/admin/Accounts/${account.id}`).json(newAccount);
+      return res.status(201).set('Location', `/admin/Accounts/${newAccount.id}`).json(newAccount);
     });
   };
 
