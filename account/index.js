@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import app from './src/app.js';
-import './redis/blacklist.js';
+// eslint-disable-next-line no-unused-vars
+import client from './redis/blacklist.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 3002;

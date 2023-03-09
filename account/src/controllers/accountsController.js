@@ -31,8 +31,7 @@ class AccountController {
 
   static logout = async (req, res) => {
     try {
-      const { token } = req;
-      console.log(token);
+      const { token } = req.authInfo;
       await addToBlacklist(token);
       res.status(204).send();
     } catch (err) {

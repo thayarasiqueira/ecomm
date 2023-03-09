@@ -9,11 +9,11 @@ const authenticateBearer = passport.authenticate('bearer', { session: false });
 
 router
   .get('/admin/accounts', authenticateBearer, AccountController.findAccounts)
-  .get('/accounts/:id', AccountController.findAccountById)
   .get('/accounts/logout', authenticateBearer, AccountController.logout)
   .post('/accounts/login', authenticateLocal, AccountController.login)
   .post('/admin/accounts', validateAccount, AccountController.createAccount)
   .put('/admin/accounts/:id', authenticateBearer, validateAccount, AccountController.updateAccount)
-  .delete('/admin/accounts/:id', authenticateBearer, AccountController.deleteAccount);
+  .delete('/admin/accounts/:id', authenticateBearer, AccountController.deleteAccount)
+  .get('/accounts/:id', AccountController.findAccountById);
 
 export default router;

@@ -6,7 +6,7 @@ import blacklist from './blacklist.js';
 const existsAsync = promisify(blacklist.exists).bind(blacklist);
 const setAsync = promisify(blacklist.set).bind(blacklist);
 
-const generateTokenHash = (token) => createHash.update('sha256')
+const generateTokenHash = (token) => createHash('sha256')
   .update(token)
   .digest('hex');
 
