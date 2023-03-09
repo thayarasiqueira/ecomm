@@ -1,6 +1,7 @@
 use("ecomm-account");
 
 db.accounts.insertMany([
+  //senha: Senhaada1!
   {
     "nome": "Ada Lovelace",
     "email": "adalovelace@email.com", 
@@ -18,6 +19,7 @@ db.accounts.insertMany([
         "uf": "CE",
     }
   },
+  //senha: Senhamarie1!
     {
     "nome": "Marie Curie",
     "email": "mariecurie@email.com", 
@@ -35,6 +37,7 @@ db.accounts.insertMany([
         "uf": "AC",
     }
   },
+  //senha: Senharosalind1!
     {
     "nome": "Rosalind Franklin",
     "email": "mariecurie@email.com", 
