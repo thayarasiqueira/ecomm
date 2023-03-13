@@ -1,13 +1,14 @@
 use("ecomm-account");
 
 db.accounts.insertMany([
+  //senha: Senhaada1!
   {
     "nome": "Ada Lovelace",
     "email": "adalovelace@email.com", 
     "senha": "$2a$12$AKvBxAdqWcD2Mo9ccRRDoe25q8fBQNGdB2cO/ogFcNv8e8PEdgPjK",
     "createdDate": new ISODate(),
-    "cpf": '74170544048',
-    "telefone":  '5537485954837',
+    "cpf": "74170544048",
+    "telefone":  "5537485954837",
     "endereco": {
         "logradouro": "Rua Afonso Cavalcante de Oliveira",
         "numero": "582",
@@ -18,13 +19,14 @@ db.accounts.insertMany([
         "uf": "CE",
     }
   },
+  //senha: Senhamarie1!
     {
     "nome": "Marie Curie",
     "email": "mariecurie@email.com", 
     "senha": "$2a$12$mwdF/Wq6OOT3eHgX6WtWvu55SkflgWes3UH.OnEOR4uWbxHbHIknG",
     "createdDate": new ISODate(),
-    "cpf": '13245299036',
-    "telefone":   '5558955576176',
+    "cpf": "13245299036",
+    "telefone":   "5558955576176",
     "endereco": {
         "logradouro": "Avenida Ceará",
         "numero": "2478",
@@ -35,13 +37,14 @@ db.accounts.insertMany([
         "uf": "AC",
     }
   },
+  //senha: Senharosalind1!
     {
     "nome": "Rosalind Franklin",
     "email": "mariecurie@email.com", 
     "senha": "$2a$12$J7VjsHiLhT3//265oyxPeu5e1UkVvQBNuNnzzdjr6MsO5M5DE5wHq",
     "createdDate": new ISODate(),
-    "cpf": '53797887000',
-    "telefone":   '5516551237967',
+    "cpf": "53797887000",
+    "telefone":   "5516551237967",
         "endereco": {
         "logradouro": "Quadra 303 Norte Alameda 18",
         "numero": "1575",

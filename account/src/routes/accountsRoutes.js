@@ -1,14 +1,19 @@
 import express from 'express';
+import passport from 'passport';
 import AccountController from '../controllers/accountsController.js';
-import validateAccount from '../validations/accountsValidation.js';
+import validateAccount from '../validators/accountsValidation.js';
 
 const router = express.Router();
+const authenticateLocal = passport.authenticate('local', { session: false });
+const authenticateBearer = passport.authenticate('bearer', { session: false });
 
 router
-  .get('/admin/accounts', AccountController.findAccounts)
-  .get('/accounts/:id', AccountController.findAccountById)
+  .get('/admin/accounts', authenticateBearer, AccountController.findAccounts)
+  .get('/accounts/logout', authenticateBearer, AccountController.logout)
+  .post('/accounts/login', authenticateLocal, AccountController.login)
   .post('/admin/accounts', validateAccount, AccountController.createAccount)
-  .put('/admin/accounts/:id', validateAccount, AccountController.updateAccount)
-  .delete('/admin/accounts/:id', AccountController.deleteAccount);
+  .put('/admin/accounts/:id', authenticateBearer, validateAccount, AccountController.updateAccount)
+  .delete('/admin/accounts/:id', authenticateBearer, AccountController.deleteAccount)
+  .get('/accounts/:id', AccountController.findAccountById);
 
 export default router;
