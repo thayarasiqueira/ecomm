@@ -16,7 +16,7 @@ const addToBlacklist = async (token) => {
   await setAsync(tokenHash, '');
   blacklist.expireat(tokenHash, expDate);
 };
-const checkIfBlacklisted = async (token) => {
+const isTokenBlacklisted = async (token) => {
   const tokenHash = generateTokenHash(token);
   const result = await existsAsync(tokenHash);
   return result === 1;
@@ -24,5 +24,5 @@ const checkIfBlacklisted = async (token) => {
 
 export {
   addToBlacklist,
-  checkIfBlacklisted,
+  isTokenBlacklisted,
 };
