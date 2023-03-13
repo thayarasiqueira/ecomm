@@ -31,7 +31,7 @@ passport.use(
       if (err) {
         return done(err);
       }
-      if (account === null) {
+      if (!account) {
         return done(createCustomError(400, 'Invalid email or password'));
       }
       if (!verifyPassword(senha, account.senha)) {
