@@ -7,7 +7,7 @@ const router = express.Router();
 const authenticateBearer = passport.authenticate('bearer', { session: false });
 
 router
-  .get('/products', ProductController.findProducts)
+  .get('/products', authenticateBearer, ProductController.findProducts)
   .get('/products/:id', ProductController.findProductById)
   .post('/admin/products', authenticateBearer, validateProduct, validateCategoryId, ProductController.createProduct)
   .put('/admin/products/:id', authenticateBearer, ProductController.updateProduct)

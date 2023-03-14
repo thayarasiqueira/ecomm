@@ -3,8 +3,8 @@ import app from './src/app.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`API Gateway is listening on ${port}`);
+app.listen(PORT, () => {
+  console.log(`API Gateway is listening on ${PORT}`);
 });

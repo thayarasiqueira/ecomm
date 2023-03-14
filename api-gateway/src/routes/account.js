@@ -8,7 +8,7 @@ const accountProxy = createProxyMiddleware({
   changeOrigin: true,
 });
 
-accountRoutes.get('/accounts', accountProxy);
+accountRoutes.get('/admin/accounts', accountProxy);
 accountRoutes.post('/accounts/login', accountProxy);
 accountRoutes.get('/accounts/:id', accountProxy);
 accountRoutes.post('/admin/accounts', accountProxy);
