@@ -17,7 +17,7 @@ Confira abaixo quais implementações da metodologia foram feitas neste projeto.
 #### I. Base de Código
 Este projeto utiliza este fator ao usar a ferramenta Git para o versionamento de código, também mantendo um repositório como código base no GitHub.
 #### II. Dependências
-Este fator é utilizado ao utilizar a completa e explícita especificação e isolamento de dependências de maneira uniforme tanto para produção quanto para desenvolvimento em cada serviço.
+Este fator é utilizado aqui ao garantir a completa e explícita especificação e isolamento de dependências de maneira uniforme em cada serviço.
 #### III. Configurações
 A aplicação do fator configurações é feita através de variáveis de ambiente contidas nos arquivos .env de cada serviço, suportados pela biblioteca "dotenv" e não versionados para manter a integridade de dados sensíveis.
 #### IV. Serviços de Apoio
