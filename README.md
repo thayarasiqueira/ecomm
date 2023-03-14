@@ -38,3 +38,27 @@ O fator que consiste em manter os ambientes de desenvolvimento, teste e produç�
 Tratar logs como fluxo de eventos ainda não foi implementado neste projeto.
 #### XII. Processos de Admin
 Executar tarefas de administração/gerenciamento como processos pontuais ainda não foi implementado neste projeto.
+
+
+## Microservices
+
+Confira abaixo quais implementações da arquitetura foram feitas neste projeto.
+
+#### - Serviços de domínio
+O projeto utiliza este padrão ao iniciar com foco na modelagem do domínio e, apenas posteriormente, na persistência de dados. Outro indicativo é o desenvolvimento de APIs RESTful em todos os serviços.
+#### - Serviços de negócio
+Também com foco na modelagem do domínio, neste caso os serviços de negócio podem ser observados aqui em operações que exigem interações entre mais de um domínio.
+#### - API Gateway
+Um API Gateway, sendo um ponto único de entrada das requisições, ainda não foi implementado neste projeto.
+#### - Agregador de processos
+Como utilizamos aqui os serviços de negócio, o agregador de processos também foi útil ao realizar a agregação de mais de um processo em uma requisição.
+#### - Edge service
+Este padrão não foi implementado, já que a aplicação não tem um Gateway específico para cada cliente.
+#### - Single database vs Bancos diferentes
+Neste ecommerce, bancos diferentes são adotados para cada serviço, facilitando a independência e escalabilidade de cada um.
+#### - Eventos assíncronos‌
+Alguns eventos assíncronos foram implementados neste projeto para garantir o funcionamento adequado da aplicação.
+#### - Agregação de logs
+A agregação de logs ainda não foi implementada.
+#### - Agregação de métricas
+A agregação de métricas ainda não foi implementada
