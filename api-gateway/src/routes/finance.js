@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const financeRoutes = express.Router();
@@ -8,8 +9,10 @@ const financeProxy = createProxyMiddleware({
   changeOrigin: true,
 });
 
-financeRoutes.get('/payments/:id', financeProxy);
-financeRoutes.post('/payments', financeProxy);
-financeRoutes.patch('/admin/payments/:id', financeProxy);
+const authenticateBearer = passport.authenticate('bearer', { session: false });
+
+financeRoutes.get('/payments/:id', authenticateBearer, financeProxy);
+financeRoutes.post('/payments', authenticateBearer, financeProxy);
+financeRoutes.patch('/admin/payments/:id', authenticateBearer, financeProxy);
 
 export default financeRoutes;

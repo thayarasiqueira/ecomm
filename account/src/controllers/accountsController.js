@@ -1,7 +1,7 @@
 import Account from '../models/Account.js';
 import { encrypt } from '../utils/hash.js';
 import generateToken from '../utils/generateToken.js';
-import { addToBlacklist } from '../../redis/blacklistOperations.js';
+import addToBlacklist from '../../redis/blacklistOperations.js';
 
 class AccountController {
   static findAccounts = (_req, res) => {

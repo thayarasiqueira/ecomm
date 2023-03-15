@@ -5,6 +5,7 @@ import finance from './routes/finance.js';
 import order from './routes/order.js';
 import category from './routes/category.js';
 import product from './routes/product.js';
+import './middlewares/authStrategies.js';
 
 const app = express();
 const limiter = rateLimit({

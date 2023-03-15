@@ -1,0 +1,35 @@
+├── Dockerfile
+├── index.js
+├── mongo/
+|   └── insereUsuarios.mongoDB
+├── node_modules/
+├── package-lock.json
+├── package.json
+├── redis/
+|   ├── blacklist.js
+|   └── blacklistOperations.js
+├── src/
+|   ├── app.js
+|   ├── config/
+|   |   └── dbConnect.js
+|   ├── controllers/
+|   |   └── accountsController.js
+|   ├── middlewares/
+|   |   ├── authStrategies.js
+|   |   └── customError.js
+|   ├── models/
+|   |   └── Account.js
+|   ├── routes/
+|   |   ├── accountsRoutes.js
+|   |   └── index.js
+|   ├── utils/
+|   |   ├── generateToken.js
+|   |   └── hash.js
+|   └── validators/
+|       └── accountsValidation.js
+├── swagger/
+|   └── swagger_output.json
+├── swagger.js
+└── test/
+    └── routes/
+        └── accountsRoutes.test.js

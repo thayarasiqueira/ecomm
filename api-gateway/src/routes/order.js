@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const orderRoutes = express.Router();
@@ -8,8 +9,10 @@ const orderProxy = createProxyMiddleware({
   changeOrigin: true,
 });
 
-orderRoutes.get('/orders/:id', orderProxy);
-orderRoutes.post('/admin/orders', orderProxy);
-orderRoutes.patch('/admin/orders/:id', orderProxy);
+const authenticateBearer = passport.authenticate('bearer', { session: false });
+
+orderRoutes.get('/orders/:id', authenticateBearer, orderProxy);
+orderRoutes.post('/admin/orders', authenticateBearer, orderProxy);
+orderRoutes.patch('/admin/orders/:id', authenticateBearer, orderProxy);
 
 export default orderRoutes;

@@ -1,6 +1,5 @@
 const app = require('./src/app.js');
 require('dotenv').config();
-require('./redis/blacklist.js');
 
 const PORT = process.env.PORT || 3003;
 
