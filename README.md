@@ -36,8 +36,8 @@ Este fator é aplicado ao implementar a possibilidade de inicialização e desli
 O fator que consiste em manter os ambientes de desenvolvimento, teste e produção o mais semelhante possível, foi implementado aqui, já que conteinerizado e orquestrado pelo Docker.
 #### XI. Logs
 Tratar logs como fluxo de eventos foi implementado, já que os logs são direcionados para o console.
-<!-- #### XII. Processos de Admin
-Executar tarefas de administração/gerenciamento como processos pontuais não foi implementado neste projeto. -->
+#### XII. Processos de Admin
+Executar tarefas de administração/gerenciamento como processos pontuais não foi implementado neste projeto.
 
 
 ## Microservices
