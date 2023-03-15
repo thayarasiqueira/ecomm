@@ -3,9 +3,10 @@ import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const accountRoutes = express.Router();
+const PORT = process.env.ACCOUNT_PORT || 3002;
 
 const accountProxy = createProxyMiddleware({
-  target: 'http://account:3002',
+  target: `http://account:${PORT}`,
   changeOrigin: true,
 });
 

@@ -3,9 +3,10 @@ import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const categoryRoutes = express.Router();
+const PORT = process.env.PRODUCT_PORT || 3001;
 
 const categoriesProxy = createProxyMiddleware({
-  target: 'http://product:3001',
+  target: `http://product:${PORT}`,
   changeOrigin: true,
 });
 

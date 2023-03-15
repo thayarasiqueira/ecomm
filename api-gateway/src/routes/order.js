@@ -3,9 +3,10 @@ import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const orderRoutes = express.Router();
+const PORT = process.env.ORDER_PORT || 3004;
 
 const orderProxy = createProxyMiddleware({
-  target: 'http://order:3004',
+  target: `http://order:${PORT}`,
   changeOrigin: true,
 });
 

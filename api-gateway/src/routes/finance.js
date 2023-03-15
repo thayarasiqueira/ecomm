@@ -3,9 +3,10 @@ import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const financeRoutes = express.Router();
+const PORT = process.env.FINANCE_PORT || 3003;
 
 const financeProxy = createProxyMiddleware({
-  target: 'http://finance:3003',
+  target: `http://finance:${PORT}`,
   changeOrigin: true,
 });
 

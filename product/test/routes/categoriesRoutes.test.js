@@ -2,16 +2,6 @@ import { describe, it } from '@jest/globals';
 import request from 'supertest';
 import app from '../../src/app.js';
 
-// let server;
-// beforeEach(() => {
-//   const port = 3000;
-//   server = app.listen(port);
-// });
-
-// afterEach(() => {
-//   server.close();
-// });
-
 describe('GET /categories', () => {
   it('returns all categories', async () => {
     await request(app)
