@@ -4,10 +4,10 @@ Projeto de simulação de um ecommerce criado durante o programa LevelUp da Alur
 
 ## Instalação
 
-Use o gerenciador de pacotes [npm](https://www.npmjs.com/) para instalar as dependências em cada serviço.
+Suba todos os serviços e instale todas as dependências com docker-compose.
 
 ```bash
-npm install
+docker-compose up --build
 ```
 
 ## The Twelve-Factor App
