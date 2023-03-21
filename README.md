@@ -76,7 +76,7 @@ Também com foco na modelagem do domínio, neste caso os serviços de negócio p
 
 ### - API Gateway
 
-Um API Gateway, sendo um ponto único de entrada das requisições, foi implementado como um dos serviços e utilizada para centralizar a autorização através de token válido e um rate limit em todos os serviços.
+Um API Gateway, sendo um ponto único de entrada das requisições, foi implementado como um dos serviços e utilizado para centralizar a autorização através de token válido e um rate limit em todos os serviços.
 
 ### - Agregador de processos
 
