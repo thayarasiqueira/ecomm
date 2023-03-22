@@ -16,12 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Start services
-      run: docker-compose up -d
-
-    - name: Print logs for all containers
-      run: docker-compose logs
-  
     - name: Install dependencies
     run: |
       cd account && npm install
@@ -29,6 +23,13 @@ jobs:
       cd ../finance && npm install
       cd ../order && npm install
       cd ../product && npm install
+
+    - name: Start services
+      run: docker-compose up -d
+
+    - name: Print logs for all containers
+      run: docker-compose logs
+  
   
     - name: Run eslint checks
       run: |
