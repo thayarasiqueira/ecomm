@@ -22,13 +22,13 @@ jobs:
     - name: Print logs for all containers
       run: docker-compose logs
   
-    - name: Run eslint checks
+    - name: Run eslint
       run: |
-        docker-compose exec --verbose account npm run lint;
-        docker-compose exec --verbose api-gateway npm run lint;
-        docker-compose exec --verbose finance npm run lint;
-        docker-compose exec --verbose order npm run lint;
-        docker-compose exec --verbose product npm run lint;
+        docker-compose exec account npm run lint --debug;
+        docker-compose exec api-gateway npm run lint --debug;
+        docker-compose exec finance npm run lint --debug;
+        docker-compose exec order npm run lint --debug;
+        docker-compose exec product npm run lint --debug;
   
     - name: Run jest/supertest checks
       run: |
