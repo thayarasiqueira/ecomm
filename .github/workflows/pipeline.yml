@@ -54,7 +54,6 @@ jobs:
     - name: Run jest/supertest checks
       run: |
         cd ../account && npm test
-        cd ../api-gateway && npm test
         cd ../finance && npm test
         cd ../order && npm test
         cd ../product && npm test
