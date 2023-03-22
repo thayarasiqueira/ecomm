@@ -101,3 +101,27 @@ A agregação de logs ainda não foi implementada, já que faria mais sentido im
 ### - Agregação de métricas
 
 A agregação de métricas ainda não foi implementada, já que faria mais sentido implementar quando for feito o deploy da aplicação.
+
+### - Padronização das stacks de serviço
+
+Apesar da independência entre serviços, utilizamos aqui algumas padronizações de stacks para facilitar a integração entre componentes. Por exemplo, o uso de Node.js e Express.js em todos os serviços do projeto.
+
+### - Solução para service discovery
+
+Com todos os serviços conteinerizados, a solução para o service discovery vem com o Docker DNS, que automaticamente cria nomes únicos para cada serviço e permite que se encontrem e se comuniquem entre si.
+
+### - Aspectos de segurança (rede, aplicação e segurança em repouso)
+
+Segurança em repouso foi aplicada ao criptografar as senhas dos usuários antes de serem armazenadas. Já a segurança da aplicação, é otimizada pela autenticação e autorização por token jwt implementados. Por fim, a segurança na rede foi otimizada com um rate limiting no API Gateway, ajudando a impedir ataques como: DDoS, Brute force e API scraping.
+
+### - Tecnologias a adotar para deploy e build
+
+Apesar de já termos a aplicação dockerizada, o que facilitará o build e deploy, o CI/CD ainda não foi aplicado e é indispensável para projetos que utilizam microsserviços.
+
+### - Como lidar com tolerância a falhas em aplicações síncronas
+
+Formas de lidar com tais tolerâncias a falhas, como por exemplo circuit breaker e retry, apesar de aplicáveis, ainda não foram implementadas neste projeto.
+
+### - Em que pontos faz sentido usar comunicação assíncrona
+
+A comunicação assíncrona é ideal onde a comunicação é indireta e a resposta não precisa ser obtida imediatamente, permitindo que o processamento da resposta continue acontecendo em plano de fundo e não interrompa o funcionamento da aplicação.
