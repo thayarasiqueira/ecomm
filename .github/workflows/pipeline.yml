@@ -18,18 +18,18 @@ jobs:
   
     - name: Run eslint checks
       run: |
-        docker-compose exec account npm run lint
-        docker-compose exec api-gateway npm run lint
-        docker-compose exec finance npm run lint
-        docker-compose exec order npm run lint
-        docker-compose exec product npm run lint
+        docker-compose exec -T account npm run lint
+        docker-compose exec -T api-gateway npm run lint
+        docker-compose exec -T finance npm run lint
+        docker-compose exec -T order npm run lint
+        docker-compose exec -T product npm run lint
   
     - name: Run jest/supertest checks
       run: |
-        docker-compose exec account npm test
-        docker-compose exec finance npm test
-        docker-compose exec order npm test
-        docker-compose exec product npm test
+        docker-compose exec -T account npm test
+        docker-compose exec -T finance npm test
+        docker-compose exec -T order npm test
+        docker-compose exec -T product npm test
   
     - name: Stop services
       run: docker-compose down
