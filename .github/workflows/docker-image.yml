@@ -18,14 +18,17 @@ jobs:
 
     - name: Start services
       run: docker-compose up -d
+
+    - name: Print logs for all containers
+      run: docker-compose logs
   
     - name: Run eslint checks
       run: |
-        docker-compose exec ecomm-account sh -c 'npm run lint';
-        docker-compose exec ecomm-api-gateway sh -c 'npm run lint';
-        docker-compose exec ecomm-finance sh -c 'npm run lint';
-        docker-compose exec ecomm-order sh -c 'npm run lint';
-        docker-compose exec ecomm-product sh -c 'npm run lint';
+        docker-compose exec account sh -c 'npm run lint';
+        docker-compose exec api-gateway sh -c 'npm run lint';
+        docker-compose exec finance sh -c 'npm run lint';
+        docker-compose exec order sh -c 'npm run lint';
+        docker-compose exec product sh -c 'npm run lint';
   
     - name: Run jest/supertest checks
       run: |
