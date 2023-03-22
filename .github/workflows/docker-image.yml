@@ -16,28 +16,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install dependencies
-    run: |
-      cd account && npm install
-      cd ../api-gateway && npm install
-      cd ../finance && npm install
-      cd ../order && npm install
-      cd ../product && npm install
-
     - name: Start services
       run: docker-compose up -d
 
     - name: Print logs for all containers
       run: docker-compose logs
   
-  
     - name: Run eslint checks
       run: |
-        cd account && npm run lint
-        cd ../api-gateway && npm run lint
-        cd ../finance && npm run lint
-        cd ../order && npm run lint
-        cd ../product && npm run lint
+        docker-compose exec --verbose account npm run lint;
+        docker-compose exec --verbose api-gateway npm run lint;
+        docker-compose exec --verbose finance npm run lint;
+        docker-compose exec --verbose order npm run lint;
+        docker-compose exec --verbose product npm run lint;
   
     - name: Run jest/supertest checks
       run: |
