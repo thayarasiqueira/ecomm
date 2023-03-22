@@ -21,11 +21,11 @@ jobs:
   
     - name: Run eslint checks
       run: |
-        docker-compose exec -T ecomm-account sh -c 'npm run lint';
-        docker-compose exec -T api-gateway npm run lint;
-        docker-compose exec -T finance npm run lint;
-        docker-compose exec -T order npm run lint;
-        docker-compose exec -T product npm run lint;
+        docker-compose exec ecomm-account sh -c 'npm run lint';
+        docker-compose exec ecomm-api-gateway sh -c 'npm run lint';
+        docker-compose exec ecomm-finance sh -c 'npm run lint';
+        docker-compose exec ecomm-order sh -c 'npm run lint';
+        docker-compose exec ecomm-product sh -c 'npm run lint';
   
     - name: Run jest/supertest checks
       run: |
