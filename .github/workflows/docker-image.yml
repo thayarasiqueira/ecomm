@@ -25,7 +25,10 @@ jobs:
     - name: Run eslint checks
       run: |
         cd account && npm run lint
-        docker-compose exec api-gateway npm run lint
+        cd ../api-gateway && npm run lint
+        cd ../finance && npm run lint
+        cd ../order && npm run lint
+        cd ../product && npm run lint
   
     - name: Run jest/supertest checks
       run: |
