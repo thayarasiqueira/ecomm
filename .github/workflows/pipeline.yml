@@ -1,62 +1,53 @@
-name: CI/CD
+services:
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    env:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
 
-on: 
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    env:
+      MYSQL_ROOT_PASSWORD: secret
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
 
-    services:
-      mongodb:
-        image: mongo:5.0
-        ports:
-          - 27017:27017
-        env:
-          MONGO_INITDB_ROOT_USERNAME: admin
-          MONGO_INITDB_ROOT_PASSWORD: secret
+steps:
+- name: Checkout code
+  uses: actions/checkout@v2
 
-      mysql:
-        image: mysql
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ROOT_PASSWORD: secret
+- name: Build Docker image
+  run: |
+    cd account && docker build -t account .
+    cd ../api-gateway && docker build -t api-gateway .
+    cd ../finance && docker build -t finance .
+    cd ../order && docker build -t order .
+    cd ../product && docker build -t product .
 
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
+- name: Start services
+  run: docker-compose up -d
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+- name: Run eslint checks
+  run: |
+    docker-compose exec account npm run lint
+    docker-compose exec api-gateway npm run lint
+    docker-compose exec finance npm run lint
+    docker-compose exec order npm run lint
+    docker-compose exec product npm run lint
 
-    - name: Install dependencies
-      run: |
-        cd account && npm install
-        cd ../api-gateway && npm install
-        cd ../finance && npm install
-        cd ../order && npm install
-        cd ../product && npm install
+- name: Run jest/supertest checks
+  run: |
+    docker-compose exec account npm test
+    docker-compose exec finance npm test
+    docker-compose exec order npm test
+    docker-compose exec product npm test
 
-    - name: Run eslint checks
-      run: |
-        cd account && npm run lint
-        cd ../api-gateway && npm run lint
-        cd ../finance && npm run lint
-        cd ../order && npm run lint
-        cd ../product && npm run lint
-
-    - name: Run jest/supertest checks
-      run: |
-        cd finance && npm test
-        cd ../account && npm test
-        cd ../order && npm test
-        cd ../product && npm test
-
-    - name: Stop services
-      run: docker-compose down
+- name: Stop services
+  run: docker-compose down

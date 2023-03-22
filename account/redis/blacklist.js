@@ -1,7 +1,7 @@
 import redis from 'redis';
 
 const client = redis.createClient({
-  host: '92.242.140.6',
+  host: 'redis',
   port: 6379,
   prefix: 'blacklist:',
 });
