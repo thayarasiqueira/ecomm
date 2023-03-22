@@ -35,6 +35,7 @@ services:
   account:
     build: ./account
     container_name: ecomm-account
+    mem_limit: 512m
     volumes:
       - ./account/:/app/ecomm-account
     ports:
