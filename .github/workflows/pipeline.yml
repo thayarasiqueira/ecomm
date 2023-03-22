@@ -38,10 +38,10 @@ jobs:
     - name: Install dependencies
       run: |
         cd account && npm install
-        cd finance && npm install
-        cd order && npm install
-        cd product && npm install
-        cd api-gateway && npm install
+        cd ../api-gateway && npm install
+        cd ../finance && npm install
+        cd ../order && npm install
+        cd ../product && npm install
 
     - name: Run eslint checks
       run: |
