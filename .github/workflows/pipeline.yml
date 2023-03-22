@@ -45,7 +45,7 @@ jobs:
 
     - name: Run eslint checks
       run: |
-        cd ../account && npm run lint
+        cd account && npm run lint
         cd ../api-gateway && npm run lint
         cd ../finance && npm run lint
         cd ../order && npm run lint
@@ -53,7 +53,7 @@ jobs:
 
     - name: Run jest/supertest checks
       run: |
-        cd ../account && npm test
+        cd account && npm test
         cd ../finance && npm test
         cd ../order && npm test
         cd ../product && npm test
