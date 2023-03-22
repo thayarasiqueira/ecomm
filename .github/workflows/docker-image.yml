@@ -16,32 +16,32 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          docker-compose build
-          docker-compose run --rm account npm install
-          docker-compose run --rm finance npm install
-          docker-compose run --rm order npm install
-          docker-compose run --rm product npm install
-          docker-compose run --rm api-gateway npm install
+    - name: Install dependencies
+      run: |
+        docker-compose build
+        docker-compose run --rm account npm install
+        docker-compose run --rm finance npm install
+        docker-compose run --rm order npm install
+        docker-compose run --rm product npm install
+        docker-compose run --rm api-gateway npm install
 
-      - name: Run linter
-        run: |
-          docker-compose run --rm account npm run lint
-          docker-compose run --rm finance npm run lint
-          docker-compose run --rm order npm run lint
-          docker-compose run --rm product npm run lint
-          docker-compose run --rm api-gateway npm run lint
+    - name: Run linter
+      run: |
+        docker-compose run --rm account npm run lint
+        docker-compose run --rm finance npm run lint
+        docker-compose run --rm order npm run lint
+        docker-compose run --rm product npm run lint
+        docker-compose run --rm api-gateway npm run lint
 
-      - name: Run tests
-        run: |
-          docker-compose run --rm account npm test
-          docker-compose run --rm finance npm test
-          docker-compose run --rm order npm test
-          docker-compose run --rm product npm test
-          docker-compose run --rm api-gateway npm test
+    - name: Run tests
+      run: |
+        docker-compose run --rm account npm test
+        docker-compose run --rm finance npm test
+        docker-compose run --rm order npm test
+        docker-compose run --rm product npm test
+        docker-compose run --rm api-gateway npm test
 
 volumes:
-  db-mongo-ecomm:
-  db-mysql-ecomm:
-  redis_data:
+db-mongo-ecomm:
+db-mysql-ecomm:
+redis_data:
