@@ -24,7 +24,7 @@ jobs:
   
     - name: Run eslint
       run: |
-        docker-compose run --rm account npm run lint
+        docker-compose run account npm run lint
   
     - name: Run jest/supertest checks
       run: |
