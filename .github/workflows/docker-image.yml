@@ -21,7 +21,7 @@ jobs:
   
     - name: Run eslint checks
       run: |
-        docke-compose exec -T ecomm-account sh -c 'npm run lint';
+        docker-compose exec -T ecomm-account sh -c 'npm run lint';
         docker-compose exec -T api-gateway npm run lint;
         docker-compose exec -T finance npm run lint;
         docker-compose exec -T order npm run lint;
