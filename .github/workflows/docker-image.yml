@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Start services
+      run: docker-compose up -d
+  
+    - name: Run eslint checks
+      run: |
+        docker-compose exec -T account npm run lint;
+        docker-compose exec -T api-gateway npm run lint;
+        docker-compose exec -T finance npm run lint;
+        docker-compose exec -T order npm run lint;
+        docker-compose exec -T product npm run lint;
+  
+    - name: Run jest/supertest checks
+      run: |
+        docker-compose exec -T account npm test;
+        docker-compose exec -T finance npm test;
+        docker-compose exec -T order npm test;
+        docker-compose exec -T product npm test;
+  
+    - name: Stop services
+      run: docker-compose down
