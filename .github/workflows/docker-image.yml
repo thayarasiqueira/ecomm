@@ -2,44 +2,76 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
+    services:
+      mongodb:
+        image: mongo:5.0
+        volumes:
+          - db-mongo-ecomm:/data/db
+        container-name: mongo-ecomm
+        ports:
+          - 27017:27017
+        env:
+          MONGO_INITDB_ROOT_USERNAME: admin
+          MONGO_INITDB_ROOT_PASSWORD: secret
+
+      mysql:
+        image: mysql
+        volumes:
+          - db-mysql-ecomm:/var/lib/mysql
+        container-name: mysql-ecomm
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: secret
+
+      redis:
+        image: redis
+        volumes:
+          - redis_data:/data
+        container-name: redis-ecomm
+        ports:
+          - 6379:6379
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: |
-        docker-compose build
-        docker-compose run --rm account npm install
-        docker-compose run --rm finance npm install
-        docker-compose run --rm order npm install
-        docker-compose run --rm product npm install
-        docker-compose run --rm api-gateway npm install
+      - name: Install dependencies
+        run: |
+          docker-compose build
+          docker-compose run --rm account npm install
+          docker-compose run --rm finance npm install
+          docker-compose run --rm order npm install
+          docker-compose run --rm product npm install
+          docker-compose run --rm api-gateway npm install
 
-    - name: Run linter
-      run: |
-        docker-compose run --rm account npm run lint
-        docker-compose run --rm finance npm run lint
-        docker-compose run --rm order npm run lint
-        docker-compose run --rm product npm run lint
-        docker-compose run --rm api-gateway npm run lint
+      - name: Run linter
+        run: |
+          docker-compose run --rm account npm run lint
+          docker-compose run --rm finance npm run lint
+          docker-compose run --rm order npm run lint
+          docker-compose run --rm product npm run lint
+          docker-compose run --rm api-gateway npm run lint
 
-    - name: Run tests
-      run: |
-        docker-compose run --rm account npm test
-        docker-compose run --rm finance npm test
-        docker-compose run --rm order npm test
-        docker-compose run --rm product npm test
-        docker-compose run --rm api-gateway npm test
+      - name: Run tests
+        run: |
+          docker-compose run --rm account npm test
+          docker-compose run --rm finance npm test
+          docker-compose run --rm order npm test
+          docker-compose run --rm product npm test
+          docker-compose run --rm api-gateway npm test
 
-    - name: Stop services
-      run: docker-compose down
+volumes:
+  db-mongo-ecomm:
+  db-mysql-ecomm:
+  redis_data
