@@ -1,0 +1,62 @@
+name: CI/CD
+
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:5.0
+        ports:
+          - 27017:27017
+        env:
+          MONGO_INITDB_ROOT_USERNAME: admin
+          MONGO_INITDB_ROOT_PASSWORD: secret
+
+      mysql:
+        image: mysql
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: secret
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        cd account && npm install
+        cd finance && npm install
+        cd order && npm install
+        cd product && npm install
+        cd api-gateway && npm install
+
+    - name: Run eslint checks
+      run: |
+        cd account && npm run lint
+        cd finance && npm run lint
+        cd order && npm run lint
+        cd product && npm run lint
+        cd api-gateway && npm run lint
+
+    - name: Run jest/supertest checks
+      run: |
+        cd account && npm test
+        cd finance && npm test
+        cd order && npm test
+        cd product && npm test
+
+    - name: Stop services
+      run: docker-compose down
