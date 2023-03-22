@@ -18,13 +18,10 @@ jobs:
 
     - name: Start services
       run: docker-compose up -d
-
-    - name: Print logs for all containers
-      run: docker-compose logs
   
     - name: Run eslint
       run: |
-        docker-compose run --rm account npm install npm run lint
+        docker-compose run --rm account npm run lint
   
     - name: Run jest/supertest checks
       run: |
