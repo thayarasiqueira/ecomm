@@ -11,7 +11,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     services:
       mongodb:
         image: mongo:5.0
@@ -34,22 +33,26 @@ jobs:
         depends_on:
           - mongodb
 
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: Install dependencies
-        run: docker exec ecomm-order npm install
-
-      - name: Check ESLint
-        shell: 'script -q -e -c "bash {0}"'
-        run: |
-          docker exec ecomm-order npm run lint --max-workers=1
-
-      - name: Run tests
-        shell: 'script -q -e -c "bash {0}"'
-        run: |
-          docker exec ecomm-order npm test
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install dependencies
+      run: docker exec ecomm-order npm install
+  
+    - name: Run eslint
+      shell: 'script -q -e -c "bash {0}"'
+      run: |
+        docker exec -t=false ecomm-account npm run lint --max-workers=1
+  
+    - name: Run tests
+      shell: 'script -q -e -c "bash {0}"'
+      run: |
+        docker exec ecomm-order npm test
+  
+    - name: Stop services
+      run: docker-compose down
 
 volumes:
   db-mongo-ecomm:
