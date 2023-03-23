@@ -1,16 +1,14 @@
-name: Docker Image CI
+name: Node.js Package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
-
     services:
       mongodb:
         image: mongo:5.0
@@ -19,7 +17,20 @@ jobs:
         env:
           MONGO_INITDB_ROOT_USERNAME: admin
           MONGO_INITDB_ROOT_PASSWORD: secret
+<<<<<<< HEAD
 
+=======
+      mysql:
+        image: mysql
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: secret
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+>>>>>>> bedb45019e0d83f1c2a4a5433d0f58cfd0bb51fd
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -27,12 +38,37 @@ jobs:
     - name: Install dependencies
       run: |
         cd account && npm install
+<<<<<<< HEAD
+=======
+        cd ../api-gateway && npm install
+        cd ../finance && npm install
+        cd ../order && npm install
+        cd ../product && npm install
+>>>>>>> bedb45019e0d83f1c2a4a5433d0f58cfd0bb51fd
 
     - name: Run eslint checks
       run: |
         cd account && npm run lint
+<<<<<<< HEAD
     
     - name: Run jest/supertest checks
       run: |
         cd account && npm test
 
+=======
+        cd ../api-gateway && npm run lint
+        cd ../finance && npm run lint
+        cd ../order && npm run lint
+        cd ../product && npm run lint
+
+    - name: Run jest/supertest checks
+      run: |
+        cd account && npm test
+        cd ../finance && npm test
+        cd ../account && npm test
+        cd ../order && npm test
+        cd ../product && npm test
+
+    - name: Stop services
+      run: docker-compose down
+>>>>>>> bedb45019e0d83f1c2a4a5433d0f58cfd0bb51fd

@@ -10,7 +10,7 @@
     "username": "root",
     "password": "secret",
     "database": "ecomm-finance",
-    "host": "mysql",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
