@@ -21,8 +21,6 @@ jobs:
           - ./order/:/app/ecomm-order
         ports:
           - 3004:3004
-        depends_on:
-          - mongodb
 
     steps:
     - name: Checkout code
