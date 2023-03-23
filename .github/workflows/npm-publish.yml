@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        cd account && npm install
+
+    - name: Run eslint checks
+      run: |
+        cd account && npm run lint
+    
+    - name: Run jest/supertest checks
+      run: |
+        cd account && npm test
+
