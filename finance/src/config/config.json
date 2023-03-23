@@ -3,21 +3,21 @@
     "username": "root",
     "password": "secret",
     "database": "ecomm-finance",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "secret",
     "database": "ecomm-finance",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "secret",
-    "database": "ecomm-finance",
-    "host": "localhost",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
