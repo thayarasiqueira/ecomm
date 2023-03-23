@@ -1,6 +1,28 @@
-import { describe, it } from '@jest/globals';
+import express from 'express';
+import mongoose from 'mongoose';
+import {
+  beforeAll, afterAll, describe, it,
+} from '@jest/globals';
 import request from 'supertest';
-import app from '../../src/app.js';
+import db from '../config/dbTestConnect.js';
+import routes from '../../src/routes/index.js';
+
+const PORT = 8000;
+const app = express();
+app.use(express.json());
+routes(app);
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
+});
+beforeAll(async () => {
+  await db.once('open', () => {
+    console.log('Db successfully connected!');
+  });
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
+});
 
 describe('GET /admin/accounts', () => {
   it('returns all accounts', async () => {
