@@ -16,7 +16,6 @@ jobs:
         image: mongo:5.0
         volumes:
           - db-mongo-ecomm:/data/db
-        container_name: mongo-ecomm
         restart: always
         ports:
           - 27017:27017
@@ -25,7 +24,6 @@ jobs:
           MONGO_INITDB_ROOT_PASSWORD: secret
       order:
         build: ./order
-        container_name: ecomm-order
         volumes:
           - ./order/:/app/ecomm-order
         ports:
@@ -33,18 +31,17 @@ jobs:
         depends_on:
           - mongodb
 
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
     
     - name: Install dependencies
-      run: docker exec ecomm-order npm install
+      run: docker exec order npm install
   
     - name: Run eslint
       shell: 'script -q -e -c "bash {0}"'
       run: |
-        docker exec -t=false ecomm-account npm run lint --max-workers=1
+        docker exec -t=false order npm run lint --max-workers=1
   
     - name: Run tests
       shell: 'script -q -e -c "bash {0}"'
