@@ -15,18 +15,17 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    
+    - name: Start services
+      run: docker-compose up -d
   
     - name: Run eslint
       run: |
-        docker-compose run account;
-        docker-compose run npm run lint;
+        docker-compose exec -T account npm run lint
   
     - name: Run jest/supertest checks
       run: |
-        docker-compose exec account npm test;
-        docker-compose exec finance npm test;
-        docker-compose exec order npm test;
-        docker-compose exec product npm test;
+        docker-compose exec -T account npm test;
   
     - name: Stop services
       run: docker-compose down
