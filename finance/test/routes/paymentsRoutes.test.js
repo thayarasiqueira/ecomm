@@ -1,15 +1,6 @@
 const { describe, it } = require('@jest/globals');
 const request = require('supertest');
-const express = require('express');
-const routes = require('../../src/routes/index.js');
-
-const PORT = 8004;
-const app = express();
-app.use(express.json());
-routes(app);
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
-});
+const app = require('../../src/app.js');
 
 let id;
 describe('POST /payments', () => {
