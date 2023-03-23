@@ -11,16 +11,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    services:
-      mongodb:
-        image: mongo:5.0
-        ports:
-          - 27017:27017
-      order:
-        volumes:
-          - ./order/:/app/ecomm-order
-        ports:
-          - 3004:3004
 
     steps:
     - name: Checkout code
@@ -41,6 +31,3 @@ jobs:
   
     - name: Stop services
       run: docker-compose down
-
-volumes:
-  db-mongo-ecomm:
