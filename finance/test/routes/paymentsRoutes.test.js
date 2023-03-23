@@ -3,7 +3,6 @@ const request = require('supertest');
 const express = require('express');
 const routes = require('../../src/routes/index.js');
 
-
 const PORT = 8004;
 const app = express();
 app.use(express.json());
