@@ -34,24 +34,14 @@ jobs:
     - name: Install dependencies
       run: |
         cd account && npm install
-<<<<<<< HEAD
-=======
         cd ../api-gateway && npm install
         cd ../finance && npm install
         cd ../order && npm install
         cd ../product && npm install
->>>>>>> bedb45019e0d83f1c2a4a5433d0f58cfd0bb51fd
 
     - name: Run eslint checks
       run: |
         cd account && npm run lint
-<<<<<<< HEAD
-    
-    - name: Run jest/supertest checks
-      run: |
-        cd account && npm test
-
-=======
         cd ../api-gateway && npm run lint
         cd ../finance && npm run lint
         cd ../order && npm run lint
@@ -67,4 +57,3 @@ jobs:
 
     - name: Stop services
       run: docker-compose down
->>>>>>> bedb45019e0d83f1c2a4a5433d0f58cfd0bb51fd
