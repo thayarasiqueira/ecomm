@@ -21,11 +21,11 @@ jobs:
   
     - name: Run eslint
       run: |
-        docker-compose exec -T account npm run lint
+        docker exec -t=false ecomm-account npm run lint
   
     - name: Run jest/supertest checks
       run: |
-        docker-compose exec -T account npm test;
+        docker exec -t=false ecomm-account npm test
   
     - name: Stop services
       run: docker-compose down
